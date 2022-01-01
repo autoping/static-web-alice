@@ -1,14 +1,14 @@
 <template>
-  <SendForm msg=" "/>
+  <RegisterForm msg=" "/>
 </template>
 
 <script>
-import SendForm from "@/components/SendForm";
+import RegisterForm from "@/components/RegisterForm";
 
 export default {
   name: 'App',
   components: {
-    SendForm
+    RegisterForm
   }
 }
 </script>
