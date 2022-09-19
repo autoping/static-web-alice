@@ -9,6 +9,11 @@
 </template>
 
 <script>
+
+    import axios from 'axios';
+
+    const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+
     export default {
         data() {
             return {
@@ -17,31 +22,20 @@
         },
 
         mounted() {
-            this.assets = [
-                {
-                    id: "some-asset-id-001",
-                    userId: "user-001",
-                    name: "Asset #1"
-                },
-                {
-                    id: "some-asset-id-002",
-                    userId: "user-001",
-                    name: "Asset #2"
-                },
-                {
-                    id: "some-asset-id-003",
-                    userId: "user-001",
-                    name: "Asset #3"
-                },
-                {
-                    id: "some-asset-id-004",
-                    userId: "user-001",
-                    name: "Asset #4"
-                }
-            ]
+            this.init();
         },
 
         methods: {
+
+            init() {
+                axios.get(apiUrl + "/assets")
+                    .then((res) => {
+                        this.assets = res.data;
+                    })
+                    .catch((err) => {
+                        alert(err);
+                    });
+            },
 
             navigateToAsset(assetId) {
                 console.log(assetId);
