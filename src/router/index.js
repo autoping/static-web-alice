@@ -3,6 +3,7 @@ import RegisterForm from "@/components/RegisterForm";
 import LoginForm from "@/components/LoginForm";
 import UserInfo from "@/components/UserInfo";
 import AssetForm from "@/components/AssetForm";
+import CardForm from "@/components/CardForm";
 
 const routes = [
   {
@@ -28,6 +29,11 @@ const routes = [
     path: '/asset-new',
     name: 'New Asset',
     component: AssetForm
+  },
+  {
+    path: '/card-new',
+    name: 'New Card',
+    component: CardForm
   }
 ]
 
