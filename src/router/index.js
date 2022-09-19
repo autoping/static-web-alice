@@ -4,6 +4,8 @@ import LoginForm from "@/components/LoginForm";
 import UserInfo from "@/components/UserInfo";
 import AssetForm from "@/components/AssetForm";
 import CardForm from "@/components/CardForm";
+import AssetList from "@/components/AssetList";
+import Asset from "@/components/Asset";
 
 const routes = [
   {
@@ -34,6 +36,16 @@ const routes = [
     path: '/card-new',
     name: 'New Card',
     component: CardForm
+  },
+  {
+    path: '/asset-list',
+    name: 'Asset List',
+    component: AssetList
+  },
+  {
+    path: '/asset',
+    name: 'Asset',
+    component: Asset
   }
 ]
 
