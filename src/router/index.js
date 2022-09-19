@@ -6,6 +6,7 @@ import AssetForm from "@/components/AssetForm";
 import CardForm from "@/components/CardForm";
 import AssetList from "@/components/AssetList";
 import Asset from "@/components/Asset";
+import Card from "@/components/Card";
 
 const routes = [
   {
@@ -46,6 +47,11 @@ const routes = [
     path: '/asset',
     name: 'Asset',
     component: Asset
+  },
+  {
+    path: '/card',
+    name: 'Card',
+    component: Card
   }
 ]
 
