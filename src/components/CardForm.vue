@@ -45,8 +45,9 @@
 
       create() {
         axios.post(apiUrl + '/cards', this.form)
-        .then(() => {
-          alert("Created !");
+        .then((res) => {
+          console.log("Card created = " + JSON.stringify(res));
+          this.$router.push({name: "Card", query: {cardId: res.data.id}});
         })
         .catch((err) => {
           alert(err);

@@ -1,6 +1,9 @@
 <template>
 
+<div>
     <span>Asset: {{asset?.id}}</span>
+    <button @click="navigateToCardForm()">Создать новый Card</button>
+</div>
 
 </template>
 
@@ -17,6 +20,10 @@
         },
 
         methods: {
+
+            navigateToCardForm() {
+                this.$router.push({name: "New Card", query: {assetId: this.asset.id}});
+            },
 
             init() {
                 this.asset = {

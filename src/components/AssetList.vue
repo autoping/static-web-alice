@@ -1,10 +1,13 @@
 <template>
 
-    <ul>
-        <li v-for="asset in assets" v-bind:key="asset.id">
-            {{ asset.name }} <button @click="navigateToAsset(asset.id)">View</button>
-        </li>
-    </ul>
+    <div>
+        <button @click="navigateToAssetForm()">Создать Новый Asset</button>
+        <ul>
+            <li v-for="asset in assets" v-bind:key="asset.id">
+                {{ asset.name }} <button @click="navigateToAsset(asset.id)">View</button>
+            </li>
+        </ul>
+    </div>
 
 </template>
 
@@ -35,6 +38,10 @@
                     .catch((err) => {
                         alert(err);
                     });
+            },
+
+            navigateToAssetForm() {
+                this.$router.push({name: "New Asset"});
             },
 
             navigateToAsset(assetId) {
