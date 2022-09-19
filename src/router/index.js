@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import RegisterForm from "@/components/RegisterForm";
 import LoginForm from "@/components/LoginForm";
 import UserInfo from "@/components/UserInfo";
+import AssetForm from "@/components/AssetForm";
 
 const routes = [
   {
@@ -22,6 +23,11 @@ const routes = [
     path: '/user-info',
     name: 'About',
     component: UserInfo
+  },
+  {
+    path: '/asset-new',
+    name: 'New Asset',
+    component: AssetForm
   }
 ]
 
