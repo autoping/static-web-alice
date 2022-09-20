@@ -7,6 +7,11 @@
                 {{ asset.name }} <button @click="navigateToAsset(asset.id)">View</button>
             </li>
         </ul>
+
+
+
+        <a v-if="user" v-bind:href="registrationUrl">Register Bot</a>
+
     </div>
 
 </template>
@@ -18,8 +23,11 @@
     const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
 
     export default {
+
         data() {
             return {
+                registrationUrl: null,
+                user: null,
                 assets: []
             }
         },
@@ -37,6 +45,11 @@
                     })
                     .catch((err) => {
                         alert(err);
+                    });
+                axios.get(apiUrl + "/users/me")
+                    .then((res) => {
+                        this.user = res.data;
+                        this.registrationUrl = "https://t.me/aping_tg_bot?start=" + res.data.id;
                     });
             },
 

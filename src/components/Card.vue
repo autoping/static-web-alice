@@ -35,7 +35,7 @@
                 axios.get(apiUrl + "/cards/" + cardId)
                     .then((res) => {
                         this.card = res.data;
-                        this.value = "https://autoping-john-ui.com/messages?cardId=" + this.card.id;
+                        this.value = "http://autoping-static-web-john.s3-website.eu-central-1.amazonaws.com?cardId=" + this.card.id;
                     })
                     .catch((err) => {
                         alert(err);
