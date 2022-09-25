@@ -36,7 +36,7 @@
       create() {
         axios.post(apiUrl + '/assets', this.form)
         .then(() => {
-          alert("Created !");
+          this.$router.push({name: "Asset List"});
         })
         .catch((err) => {
           alert(err);

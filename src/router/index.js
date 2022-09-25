@@ -7,11 +7,17 @@ import CardForm from "@/components/CardForm";
 import AssetList from "@/components/AssetList";
 import Asset from "@/components/Asset";
 import Card from "@/components/Card";
+import Landing from "@/components/Landing";
 
 const routes = [
   {
     path: '/',
-    redirect: '/register'
+    redirect: '/landing'
+  },
+  {
+    path: '/landing',
+    name: 'Landing',
+    component: Landing
   },
   {
     path: '/register',
