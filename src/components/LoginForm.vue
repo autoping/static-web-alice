@@ -1,65 +1,72 @@
 <template>
-  <form class="form-signin">
 
-    <div class="form-label-group">
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-      <label for="inputEmail">Email address</label>
-    </div>
-
-    <div class="form-label-group">
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-      <label for="inputPassword">Password</label>
-    </div>
-
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted text-center">© 2021</p>
-  </form>
+  <main class="container-fluid overflow-scroll">
+    <h1>Login form</h1>
+    <form v-on:submit.prevent="signin">
+      <div class="form-group">
+        <label for="inputLogin">Login *</label>
+        <input type="text" class="form-control" id="inputLogin" v-model="form.login" placeholder="alice.smith@mailbox.net">
+      </div>
+      <div class="form-group">
+        <label for="inputPassword">Password *</label>
+        <input type="password" class="form-control" id="inputPassword" v-model="form.password" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+  </main>
 
 </template>
 
+
+
 <script>
-export default {
-  name: 'RegisterForm',
-  props: {
-    msg: String
-  },
-  data() {
-    return {
+  import axios from 'axios';
+  
+  const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
 
+  export default {
+
+    name: 'LoginForm',
+    
+    props: {
+      msg: String
+    },
+
+    data() {
+      return {
+        form: {
+            login: "",
+            password: ""
+        }
+      }
+    },
+
+    methods: {
+      signin() {
+        axios.post(apiUrl + '/login', this.form)
+        .then((res) => {
+          localStorage.setItem('accessToken', res.data.accessToken);
+          this.$router.push({name: "Asset List"});
+        })
+        .catch((err) => {
+          alert(err);
+        });
+      }
     }
-  },
-  methods: {
-
-  }
-
 }
-// let m = [{text:"hi there is someone touch"}, {text:"ok, thanks"}];
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  body {
+    height: 100%;
+  }
 
+  .h-100 {
+    height: 100% !important;
+  }
 
-
-body {
-  height: 100%;
-}
-
-.h-100 {
-  height: 100% !important;
-}
-
-.form-signin{
-
-  width: 100%;
-  max-width: 420px;
-  padding: 15px;
-  margin: 0 auto;
-}
+  main {
+    min-height: 30%;
+  }
 </style>
