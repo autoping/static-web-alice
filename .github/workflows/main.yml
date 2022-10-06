@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ main, feature/experiments_with_bulma ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
