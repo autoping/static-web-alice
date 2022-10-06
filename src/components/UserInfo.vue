@@ -1,6 +1,6 @@
 <template>
 
-
+  <Menu/>
   <h1>User Alice</h1>
   <div class="container">
     <div class="row" >
@@ -21,8 +21,12 @@
 </template>
 
 <script>
+import Menu from './Menu.vue'
 export default {
   name: 'UserInfo',
+  components: {
+    Menu
+  },
   props: {
     msg: String
   },
@@ -40,15 +44,4 @@ export default {
 <style scoped>
 
 
-body {
-  height: 100%;
-}
-
-.h-100 {
-  height: 100% !important;
-}
-
-main {
-  min-height: 30%;
-}
 </style>

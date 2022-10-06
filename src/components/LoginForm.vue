@@ -1,19 +1,26 @@
 <template>
 
-  <main class="container-fluid overflow-scroll">
-    <h1>Login form</h1>
-    <form v-on:submit.prevent="signin">
-      <div class="form-group">
-        <label for="inputLogin">Login *</label>
-        <input type="text" class="form-control" id="inputLogin" v-model="form.login" placeholder="alice.smith@mailbox.net">
+
+    <form v-on:submit.prevent="signin" class="box">
+      <div class="field">
+        <label class="label">Login *</label>
+        <div class="control">
+          <input type="email" class="input" id="inputLogin" v-model="form.login" placeholder="alice.smith@mailbox.net">
+
+        </div>
       </div>
-      <div class="form-group">
-        <label for="inputPassword">Password *</label>
-        <input type="password" class="form-control" id="inputPassword" v-model="form.password" placeholder="Password">
+
+      <div class="field">
+        <label class="label">Password *</label>
+        <div class="control">
+          <input type="password" class="input" id="inputPassword" v-model="form.password" placeholder="Password">
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Sign In</button>
+
+      <button type="submit"  class="button is-primary">Sign in</button>
+
     </form>
-  </main>
+
 
 </template>
 
@@ -58,15 +65,5 @@
 </script>
 
 <style scoped>
-  body {
-    height: 100%;
-  }
 
-  .h-100 {
-    height: 100% !important;
-  }
-
-  main {
-    min-height: 30%;
-  }
 </style>
