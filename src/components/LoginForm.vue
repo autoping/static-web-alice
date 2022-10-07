@@ -1,65 +1,73 @@
 <template>
-
-
-    <form v-on:submit.prevent="signin" class="box">
-      <div class="field">
-        <label class="label">Login *</label>
-        <div class="control">
-          <input type="email" class="input" id="inputLogin" v-model="form.login" placeholder="alice.smith@mailbox.net">
-
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="column is-4 is-offset-4">
+          <form v-on:submit.prevent="signin" class="box">
+            <div class="field">
+              <label class="label">Login *</label>
+              <div class="control">
+                <input type="email" class="input" id="inputLogin" v-model="form.login"
+                       placeholder="alice.smith@mailbox.net">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Password *</label>
+              <div class="control">
+                <input type="password" class="input" id="inputPassword" v-model="form.password" placeholder="Password">
+              </div>
+            </div>
+            <button type="submit" class="button is-primary">Sign in</button>
+          </form>
         </div>
       </div>
 
-      <div class="field">
-        <label class="label">Password *</label>
-        <div class="control">
-          <input type="password" class="input" id="inputPassword" v-model="form.password" placeholder="Password">
-        </div>
-      </div>
-
-      <button type="submit"  class="button is-primary">Sign in</button>
-
-    </form>
-
+    </div>
+  </section>
 
 </template>
 
 
-
 <script>
-  import axios from 'axios';
-  
-  const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+import axios from 'axios';
 
-  export default {
+const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
 
-    name: 'LoginForm',
-    
-    props: {
-      msg: String
-    },
+export default {
 
-    data() {
-      return {
-        form: {
-            login: "",
-            password: ""
-        }
-      }
-    },
+  name: 'LoginForm',
 
-    methods: {
-      signin() {
-        axios.post(apiUrl + '/login', this.form)
-        .then((res) => {
-          localStorage.setItem('accessToken', res.data.accessToken);
-          this.$router.push({name: "Asset List"});
-        })
-        .catch((err) => {
-          alert(err);
-        });
+  props: {
+    msg: String
+  },
+
+  data() {
+    return {
+      form: {
+        login: "",
+        password: ""
       }
     }
+  },
+
+  methods: {
+    signin() {
+      axios.post(apiUrl + '/login', this.form)
+          .then((res) => {
+            localStorage.setItem('accessToken', res.data.accessToken);
+            this.$router.push({name: "Asset List"});
+          })
+          .catch((err) => {
+            console.log(err);
+            if (err.response.status === 501) {
+              alert("Логин или пароль не верные, попробуйте еще раз!");
+            } else {
+              alert(err);
+            }
+
+          });
+    }
+  }
 }
 
 </script>

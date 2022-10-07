@@ -16,11 +16,11 @@
       <div class="navbar-start">
 
 
-        <div class="navbar-item">
+        <div class="navbar-item" v-show="$route.name!=='Asset List'">
           <router-link :to="{ path: `/asset-list` }" class="navbar-item"> Assets list</router-link>
 
         </div>
-        <div class="navbar-item">
+        <div class="navbar-item" v-show="$route.name!=='About'">
           <router-link :to="{ path: `/user-info` }" class="navbar-item"> User info</router-link>
         </div>
 
