@@ -2,8 +2,8 @@
 
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <div class="navbar-item" >
-<!--        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
+      <div class="navbar-item">
+        <!--        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
       </div>
       <a class="navbar-item">
         <router-link :to="{ path: `/register` }"> Sign up</router-link>
@@ -24,8 +24,6 @@
   </nav>
 
 
-
-
   <section class="hero is-white is-fullheight">
     <div class="hero-body">
       <div class="container">
@@ -37,7 +35,7 @@
           is-5-widescreen
           is-5-fullhd " data-aos="fade-down">
             <h1 class="title titled is-1 mb-6">
-              Evolving business with technology jhjhjhjhjhjh
+              Получать сообщения не оставляя телефон легко!
             </h1>
           </div>
           <div data-aos="fade-right" class="column
@@ -77,12 +75,14 @@
           is-5-widescreen is-offset-1-widescreen
           is-5-fullhd is-offset-1-fullhd">
             <h1 class="titled title is-1 mb-6">
-              absurd illustrations that make sense
+              Всего несколько шагов
             </h1>
-            <h2 class="subtitled subtitle">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum cupiditate dolorum vitae dolores
-              nesciunt totam magni quas.
-            </h2>
+            <ul>
+              <li>Зарегистрируйтесь в сервисе</li>
+              <li>Добавьте Предмет, назначте код</li>
+              <li>Распечатайте qr-код и наклейте на ваш предмет что бы люди могли связаться с вами</li>
+            </ul>
+
           </div>
 
         </div>
@@ -94,19 +94,15 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
+export default {
+  data() {
+    return {}
+  },
 
-            }
-        },
+  mounted() {
 
-        mounted() {
+  },
 
-        },
-
-        methods: {
-
-        }
-    }
+  methods: {}
+}
 </script>
