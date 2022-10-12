@@ -8,6 +8,7 @@ import AssetList from "@/components/AssetList";
 import Asset from "@/components/Asset";
 import Card from "@/components/Card";
 import Landing from "@/components/Landing";
+import RegisterBotForm from "@/components/RegisterBotForm";
 
 const routes = [
   {
@@ -23,6 +24,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: RegisterForm
+  },
+  {
+    path: '/register-bot',
+    name: 'RegisterBot',
+    component: RegisterBotForm
   },
   {
     path: '/login',

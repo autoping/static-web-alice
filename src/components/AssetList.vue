@@ -1,19 +1,26 @@
 <template>
-
   <Menu/>
-  <div>
-    <button @click="navigateToAssetForm()">Создать Новый Asset</button>
-    <ul>
-      <li v-for="asset in assets" v-bind:key="asset.id">
-        {{ asset.name }}
-        <button @click="navigateToAsset(asset.id)">View</button>
-      </li>
-    </ul>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="box">
+
+          <div>
+            <button @click="navigateToAssetForm()">Создать Новый Asset</button>
+            <ul>
+              <li v-for="asset in assets" v-bind:key="asset.id">
+                {{ asset.name }}
+                <button @click="navigateToAsset(asset.id)">View</button>
+              </li>
+            </ul>
 
 
-    <a v-if="user" v-bind:href="registrationUrl">Register Bot</a>
+          </div>
 
-  </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </template>
 
@@ -33,7 +40,7 @@ export default {
   data() {
     return {
       registrationUrl: null,
-      user: null,
+      user: {},
       assets: []
     }
   },
@@ -51,11 +58,6 @@ export default {
           })
           .catch((err) => {
             alert(err);
-          });
-      axios.get(apiUrl + "/users/me")
-          .then((res) => {
-            this.user = res.data;
-            this.registrationUrl = "https://t.me/aping_tg_bot?start=" + res.data.id;
           });
     },
 

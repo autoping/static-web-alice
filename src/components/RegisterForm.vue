@@ -1,24 +1,41 @@
 <template>
 
-  <main class="container-fluid overflow-scroll">
-    <h1>Registration form</h1>
-    <form v-on:submit.prevent="signup">
-      <div class="form-group">
-        <label for="inputLogin">Login *</label>
-        <input type="text" class="form-control" id="inputLogin" v-model="form.login" placeholder="alice.smith@mailbox.net">
-      </div>
-      <div class="form-group">
-        <label for="inputNickname">Nickname *</label>
-        <input type="text" class="form-control" id="inputNickname" v-model="form.nickname" placeholder="Alice">
-      </div>
-      <div class="form-group">
-        <label for="inputPassword">Password *</label>
-        <input type="password" class="form-control" id="inputPassword" v-model="form.password" placeholder="Password">
-      </div>
-      <button type="submit" class="btn btn-primary">Register</button>
-    </form>
-  </main>
 
+
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="column is-4 is-offset-4">
+
+          <form v-on:submit.prevent="signup" class="box">
+            <h5 class="title is-5">Please, provide basic information:</h5>
+            <div class="field">
+              <label class="label">Login *</label>
+              <div class="control">
+                <input type="text" class="input" id="inputLogin" v-model="form.login"
+                       placeholder="alice.smith@mailbox.net">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Nickname *</label>
+              <div class="control">
+                <input type="text" class="input" id="inputNickname" v-model="form.nickname" placeholder="Alice">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Password *</label>
+              <div class="control">
+                <input type="password" class="input" id="inputPassword" v-model="form.password" placeholder="Password">
+              </div>
+            </div>
+            <button type="submit" class="button is-primary">Register</button>
+            <button type="button" class="button"><router-link :to="{ path: `/landing` }" > Later</router-link></button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
 </template>
 
 
@@ -53,7 +70,11 @@
           this.$router.push('Login'); 
         })
         .catch((err) => {
-          alert(err);
+          if (err.response.status === 400) {
+            alert(err.response.data);
+          } else {
+            alert(err);
+          }
         });
       }
     }
@@ -62,15 +83,5 @@
 </script>
 
 <style scoped>
-  body {
-    height: 100%;
-  }
 
-  .h-100 {
-    height: 100% !important;
-  }
-
-  main {
-    min-height: 30%;
-  }
 </style>

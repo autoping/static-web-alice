@@ -1,27 +1,28 @@
 <template>
-
   <Menu/>
-  <h1>User Alice</h1>
-  <div class="container">
-    <div class="row" >
-      Name: Alice
-    </div>
-    <div class="row">
-      E-Mail: alice@mail.df
-    </div>
-    <div class="row">
-      Phone: +932423434324
-    </div>
-    <div class="row">
-      Messengers: Telegram
-    </div>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="box">
+          <h1>{{ user.nickname }}</h1>
 
-  </div>
+          <div class="row">
+            Nickname: {{ user.nickname }}
+          </div>
+          <div class="row">
+            Messengers: Telegram
+          </div>
 
+
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
 import Menu from './Menu.vue'
+
 export default {
   name: 'UserInfo',
   components: {
@@ -31,9 +32,18 @@ export default {
     msg: String
   },
   data() {
-    return {}
+    return {
+      user: {}
+    }
   },
-  methods: {}
+  mounted() {
+    this.init();
+  },
+  methods: {
+    init() {
+      this.user = JSON.parse(localStorage.getItem("user"));
+    }
+  }
 
 }
 

@@ -29,7 +29,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-primary">
+            <a class="button ">
               <router-link :to="{ path: `/landing` }" > Logout</router-link>
 
             </a>

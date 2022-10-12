@@ -4,6 +4,7 @@
       <div class="container">
         <div class="column is-4 is-offset-4">
           <form v-on:submit.prevent="signin" class="box">
+            <h5 class="title is-5">Signing in:</h5>
             <div class="field">
               <label class="label">Login *</label>
               <div class="control">
@@ -55,16 +56,22 @@ export default {
       axios.post(apiUrl + '/login', this.form)
           .then((res) => {
             localStorage.setItem('accessToken', res.data.accessToken);
-            this.$router.push({name: "Asset List"});
+            return axios.get(apiUrl+'/users/me');
+          })
+          .then((res) =>{
+            localStorage.setItem('user', JSON.stringify(res.data));
+            if(res.data.chatId) {
+              this.$router.push({name: "Asset List"});
+            }else {
+              this.$router.push({name: "RegisterBot"});
+            }
           })
           .catch((err) => {
-            console.log(err);
             if (err.response.status === 501) {
               alert("Логин или пароль не верные, попробуйте еще раз!");
             } else {
               alert(err);
             }
-
           });
     }
   }
