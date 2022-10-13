@@ -4,16 +4,16 @@
     <div class="hero-body">
       <div class="container">
         <div class="box">
-          <main class="container-fluid overflow-scroll">
-            <h1>New Asset</h1>
-            <form v-on:submit.prevent="create">
-              <div class="form-group">
-                <label for="inputName">Name *</label>
-                <input type="text" class="form-control" id="inputName" v-model="form.name" placeholder="Мой автомобиль">
+          <h5 class="title is-5">New Asset</h5>
+          <form v-on:submit.prevent="create">
+            <div class="field">
+              <label class="label" for="inputName">Name *</label>
+              <div class="control">
+                <input type="text" class="input" id="inputName" v-model="form.name" placeholder="Мой автомобиль">
               </div>
-              <button type="submit" class="btn btn-primary">Create</button>
-            </form>
-          </main>
+            </div>
+            <button type="submit" class="button is-primary">Create</button>
+          </form>
         </div>
       </div>
     </div>

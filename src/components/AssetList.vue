@@ -4,19 +4,17 @@
     <div class="hero-body">
       <div class="container">
         <div class="box">
-
-          <div>
-            <button @click="navigateToAssetForm()">Создать Новый Asset</button>
-            <ul>
-              <li v-for="asset in assets" v-bind:key="asset.id">
-                {{ asset.name }}
-                <button @click="navigateToAsset(asset.id)">View</button>
-              </li>
-            </ul>
-
-
+          <div class="block">
+            <button class="button is-primary" @click="navigateToAssetForm()">Создать Новый Asset</button>
           </div>
-
+          <div class="block">
+            <div class="columns is-mobile" v-for="asset in assets" v-bind:key="asset.id">
+              <div class="column">{{ asset.name }}</div>
+              <div class="column">
+                <button class="button" @click="navigateToAsset(asset.id)">View</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -4,18 +4,17 @@
     <div class="hero-body">
       <div class="container">
         <div class="box">
-          <main class="container-fluid overflow-scroll">
-            <h1>New Card</h1>
-            <form v-on:submit.prevent="create">
-              <div class="form-group">
-                <label for="inputDescription">Description</label>
-                <input type="text" class="form-control" id="inputDescription" v-model="form.description"
+          <h5 class="title is-5">New Card</h5>
+          <form v-on:submit.prevent="create">
+            <div class="field">
+              <label class="label" for="inputDescription">Description</label>
+              <div class="control">
+                <input type="text" class="input" id="inputDescription" v-model="form.description"
                        placeholder="Новый QR">
               </div>
-              <button type="submit" class="btn btn-primary">Create</button>
-            </form>
-          </main>
-
+            </div>
+            <button type="submit" class="button is-primary">Create</button>
+          </form>
         </div>
       </div>
     </div>

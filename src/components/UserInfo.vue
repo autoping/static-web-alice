@@ -4,16 +4,15 @@
     <div class="hero-body">
       <div class="container">
         <div class="box">
-          <h1>{{ user.nickname }}</h1>
-
-          <div class="row">
-            Nickname: {{ user.nickname }}
+          <div class="block">
+            <h1 class="title is-1">{{ user.nickname }}</h1>
           </div>
-          <div class="row">
-            Messengers: Telegram
+          <div class="block">
+            <h7 class="title is-7">Nickname: {{ user.nickname }}</h7>
           </div>
-
-
+          <div class="block">
+            <h7 class="title is-7">Messengers: Telegram</h7>
+          </div>
         </div>
       </div>
     </div>
