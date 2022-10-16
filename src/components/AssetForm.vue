@@ -12,7 +12,12 @@
                 <input type="text" class="input" id="inputName" v-model="form.name" placeholder="Мой автомобиль">
               </div>
             </div>
+
+            <div v-if="errMsg" class="notification is-danger is-light">
+              {{ errMsg }}
+            </div>
             <button type="submit" class="button is-primary">Create</button>
+
           </form>
         </div>
       </div>
@@ -26,7 +31,7 @@
 import Menu from './Menu.vue'
 import axios from 'axios';
 
-const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+const apiUrl = process.env.VUE_APP_API_BASE_URL;
 
 export default {
 
@@ -34,6 +39,7 @@ export default {
 
   data() {
     return {
+      errMsg: "",
       form: {
         name: ""
       }
@@ -42,12 +48,17 @@ export default {
 
   methods: {
     create() {
+      this.errMsg="";
       axios.post(apiUrl + '/assets', this.form)
           .then(() => {
             this.$router.push({name: "Asset List"});
           })
           .catch((err) => {
-            alert(err);
+            if (err.response.status === 400) {
+              this.errMsg  = err.response.data;
+            } else {
+              alert(err);
+            }
           });
     }
   },

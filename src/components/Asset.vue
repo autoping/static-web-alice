@@ -27,7 +27,7 @@
 import axios from "axios";
 import Menu from "@/components/Menu";
 
-const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+const apiUrl = process.env.VUE_APP_API_BASE_URL;
 
 export default {
   components: {

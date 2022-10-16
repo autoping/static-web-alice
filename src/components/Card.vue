@@ -16,7 +16,7 @@
 import Menu from './Menu.vue'
 import axios from 'axios';
 
-const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+const apiUrl = process.env.VUE_APP_API_BASE_URL;
 
 import QrcodeVue from 'qrcode.vue'
 

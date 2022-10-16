@@ -13,6 +13,10 @@
                        placeholder="Новый QR">
               </div>
             </div>
+
+            <div v-if="errMsg" class="notification is-danger is-light">
+              {{ errMsg }}
+            </div>
             <button type="submit" class="button is-primary">Create</button>
           </form>
         </div>
@@ -27,7 +31,9 @@
 import Menu from './Menu.vue'
 import axios from 'axios';
 
-const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+// const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+
+const apiUrl = process.env.VUE_APP_API_BASE_URL;
 
 export default {
   components: {
@@ -38,6 +44,7 @@ export default {
 
   data() {
     return {
+      errMsg: "",
       form: {
         assetId: "",
         description: ""
@@ -56,13 +63,18 @@ export default {
     },
 
     create() {
+      this.errMsg = "";
       axios.post(apiUrl + '/cards', this.form)
           .then((res) => {
             console.log("Card created = " + JSON.stringify(res));
             this.$router.push({name: "Card", query: {cardId: res.data.id}});
           })
           .catch((err) => {
-            alert(err);
+            if (err.response.status === 400) {
+              this.errMsg  = err.response.data;
+            } else {
+              alert(err);
+            }
           });
     }
   }

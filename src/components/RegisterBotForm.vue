@@ -8,7 +8,7 @@
           <h3 class="title is-3">We're almost done...</h3>
           <h6 class="title is-7">To complete registration, please link your created user with Telegramm Bot. <br>
             For this just click on
-            <a v-if="user" v-bind:href="registrationUrl">this link</a>
+            <a v-if="user" v-bind:href="registrationUrl" target="_blank">this link</a>
             <br> and choose the command Start in telegramm application
           </h6>
 
@@ -34,7 +34,7 @@ import axios from 'axios';
 import Menu from "@/components/Menu";
 
 
-const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+const apiUrl = process.env.VUE_APP_API_BASE_URL;
 
 export default {
   components: {
