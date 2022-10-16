@@ -1,59 +1,83 @@
 <template>
+  <Menu/>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="box">
+          <h5 class="title is-5">New Card</h5>
+          <form v-on:submit.prevent="create">
+            <div class="field">
+              <label class="label" for="inputDescription">Description</label>
+              <div class="control">
+                <input type="text" class="input" id="inputDescription" v-model="form.description"
+                       placeholder="Новый QR">
+              </div>
+            </div>
 
-  <main class="container-fluid overflow-scroll">
-    <h1>New Card</h1>
-    <form v-on:submit.prevent="create">
-      <div class="form-group">
-        <label for="inputDescription">Description</label>
-        <input type="text" class="form-control" id="inputDescription" v-model="form.description" placeholder="Новый QR">
+            <div v-if="errMsg" class="notification is-danger is-light">
+              {{ errMsg }}
+            </div>
+            <button type="submit" class="button is-primary">Create</button>
+          </form>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Create</button>
-    </form>
-  </main>
+    </div>
+  </section>
 
 </template>
 
 
-
 <script>
-  import axios from 'axios';
-  
-  const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+import Menu from './Menu.vue'
+import axios from 'axios';
 
-  export default {
+// const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
 
-    name: 'CardForm',
+const apiUrl = process.env.VUE_APP_API_BASE_URL;
 
-    data() {
-      return {
-        form: {
-            assetId: "",
-            description: ""
-        }
-      }
-    },
+export default {
+  components: {
+    Menu
+  },
 
-    mounted() {
-      this.init();
-    },
+  name: 'CardForm',
 
-    methods: {
-
-      init() {
-        this.form.assetId = this.$route.query.assetId;
-      },
-
-      create() {
-        axios.post(apiUrl + '/cards', this.form)
-        .then((res) => {
-          console.log("Card created = " + JSON.stringify(res));
-          this.$router.push({name: "Card", query: {cardId: res.data.id}});
-        })
-        .catch((err) => {
-          alert(err);
-        });
+  data() {
+    return {
+      errMsg: "",
+      form: {
+        assetId: "",
+        description: ""
       }
     }
+  },
+
+  mounted() {
+    this.init();
+  },
+
+  methods: {
+
+    init() {
+      this.form.assetId = this.$route.query.assetId;
+    },
+
+    create() {
+      this.errMsg = "";
+      axios.post(apiUrl + '/cards', this.form)
+          .then((res) => {
+            console.log("Card created = " + JSON.stringify(res));
+            this.$router.push({name: "Card", query: {cardId: res.data.id}});
+          })
+          .catch((err) => {
+            if (err.response.status === 400) {
+              this.errMsg  = err.response.data;
+            } else {
+              alert(err);
+            }
+          });
+    }
+  }
 }
 
 </script>

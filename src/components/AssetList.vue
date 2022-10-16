@@ -1,66 +1,72 @@
 <template>
-
-    <div>
-        <button @click="navigateToAssetForm()">Создать Новый Asset</button>
-        <ul>
-            <li v-for="asset in assets" v-bind:key="asset.id">
-                {{ asset.name }} <button @click="navigateToAsset(asset.id)">View</button>
-            </li>
-        </ul>
-
-
-
-        <a v-if="user" v-bind:href="registrationUrl">Register Bot</a>
-
+  <Menu/>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="box">
+          <div class="block">
+            <button class="button is-primary" @click="navigateToAssetForm()">Создать Новый Asset</button>
+          </div>
+          <div class="block">
+            <div class="columns is-mobile" v-for="asset in assets" v-bind:key="asset.id">
+              <div class="column">{{ asset.name }}</div>
+              <div class="column">
+                <button class="button" @click="navigateToAsset(asset.id)">View</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
 </template>
 
 <script>
 
-    import axios from 'axios';
+import axios from 'axios';
+import Menu from './Menu.vue'
 
-    const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+const apiUrl = process.env.VUE_APP_API_BASE_URL;
 
-    export default {
+export default {
 
-        data() {
-            return {
-                registrationUrl: null,
-                user: null,
-                assets: []
-            }
-        },
+  components: {
+    Menu
+  },
 
-        mounted() {
-            this.init();
-        },
-
-        methods: {
-
-            init() {
-                axios.get(apiUrl + "/assets")
-                    .then((res) => {
-                        this.assets = res.data;
-                    })
-                    .catch((err) => {
-                        alert(err);
-                    });
-                axios.get(apiUrl + "/users/me")
-                    .then((res) => {
-                        this.user = res.data;
-                        this.registrationUrl = "https://t.me/aping_tg_bot?start=" + res.data.id;
-                    });
-            },
-
-            navigateToAssetForm() {
-                this.$router.push({name: "New Asset"});
-            },
-
-            navigateToAsset(assetId) {
-                console.log(assetId);
-                this.$router.push({name: "Asset", query: {assetId: assetId}});
-            }
-        }
+  data() {
+    return {
+      registrationUrl: null,
+      user: {},
+      assets: []
     }
+  },
+
+  mounted() {
+    this.init();
+  },
+
+  methods: {
+
+    init() {
+      axios.get(apiUrl + "/assets")
+          .then((res) => {
+            this.assets = res.data;
+          })
+          .catch((err) => {
+            alert(err);
+          });
+    },
+
+    navigateToAssetForm() {
+      this.$router.push({name: "New Asset"});
+    },
+
+    navigateToAsset(assetId) {
+      console.log(assetId);
+      this.$router.push({name: "Asset", query: {assetId: assetId}});
+    }
+  }
+}
 </script>

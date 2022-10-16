@@ -1,72 +1,87 @@
 <template>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="column is-4 is-offset-4">
+          <form v-on:submit.prevent="signin" class="box">
+            <h5 class="title is-5">Signing in:</h5>
+            <div class="field">
+              <label class="label">Login *</label>
+              <div class="control">
+                <input type="email" class="input" id="inputLogin" v-model="form.login"
+                       placeholder="alice.smith@mailbox.net">
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Password *</label>
+              <div class="control">
+                <input type="password" class="input" id="inputPassword" v-model="form.password" placeholder="Password">
+              </div>
+            </div>
 
-  <main class="container-fluid overflow-scroll">
-    <h1>Login form</h1>
-    <form v-on:submit.prevent="signin">
-      <div class="form-group">
-        <label for="inputLogin">Login *</label>
-        <input type="text" class="form-control" id="inputLogin" v-model="form.login" placeholder="alice.smith@mailbox.net">
+            <div v-if="errMsg" class="notification is-danger is-light">
+              {{ errMsg }}
+            </div>
+            <button type="submit" class="button is-primary">Sign in</button>
+          </form>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="inputPassword">Password *</label>
-        <input type="password" class="form-control" id="inputPassword" v-model="form.password" placeholder="Password">
-      </div>
-      <button type="submit" class="btn btn-primary">Sign In</button>
-    </form>
-  </main>
+
+    </div>
+  </section>
 
 </template>
 
 
-
 <script>
-  import axios from 'axios';
-  
-  const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+import axios from 'axios';
 
-  export default {
+const apiUrl = process.env.VUE_APP_API_BASE_URL;
 
-    name: 'LoginForm',
-    
-    props: {
-      msg: String
-    },
+export default {
 
-    data() {
-      return {
-        form: {
-            login: "",
-            password: ""
-        }
-      }
-    },
+  name: 'LoginForm',
 
-    methods: {
-      signin() {
-        axios.post(apiUrl + '/login', this.form)
-        .then((res) => {
-          localStorage.setItem('accessToken', res.data.accessToken);
-          this.$router.push({name: "Asset List"});
-        })
-        .catch((err) => {
-          alert(err);
-        });
+
+  data() {
+    return {
+      errMsg: "",
+      form: {
+        login: "",
+        password: ""
       }
     }
+  },
+
+  methods: {
+    signin() {
+      this.errMsg="";
+      axios.post(apiUrl + '/login', this.form)
+          .then((res) => {
+            localStorage.setItem('accessToken', res.data.accessToken);
+            return axios.get(apiUrl+'/users/me');
+          })
+          .then((res) =>{
+            localStorage.setItem('user', JSON.stringify(res.data));
+            if(res.data.chatId) {
+              this.$router.push({name: "Asset List"});
+            }else {
+              this.$router.push({name: "RegisterBot"});
+            }
+          })
+          .catch((err) => {
+            if (err.response.status === 501) {
+              this.errMsg = "Логин или пароль не верные, попробуйте еще раз!";
+            } else {
+              alert(err);
+            }
+          });
+    }
+  }
 }
 
 </script>
 
 <style scoped>
-  body {
-    height: 100%;
-  }
 
-  .h-100 {
-    height: 100% !important;
-  }
-
-  main {
-    min-height: 30%;
-  }
 </style>

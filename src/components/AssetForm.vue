@@ -1,48 +1,70 @@
 <template>
+  <Menu/>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="box">
+          <h5 class="title is-5">New Asset</h5>
+          <form v-on:submit.prevent="create">
+            <div class="field">
+              <label class="label" for="inputName">Name *</label>
+              <div class="control">
+                <input type="text" class="input" id="inputName" v-model="form.name" placeholder="Мой автомобиль">
+              </div>
+            </div>
 
-  <main class="container-fluid overflow-scroll">
-    <h1>New Asset</h1>
-    <form v-on:submit.prevent="create">
-      <div class="form-group">
-        <label for="inputName">Name *</label>
-        <input type="text" class="form-control" id="inputName" v-model="form.name" placeholder="Мой автомобиль">
+            <div v-if="errMsg" class="notification is-danger is-light">
+              {{ errMsg }}
+            </div>
+            <button type="submit" class="button is-primary">Create</button>
+
+          </form>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Create</button>
-    </form>
-  </main>
+    </div>
+  </section>
 
 </template>
 
 
-
 <script>
-  import axios from 'axios';
-  
-  const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+import Menu from './Menu.vue'
+import axios from 'axios';
 
-  export default {
+const apiUrl = process.env.VUE_APP_API_BASE_URL;
 
-    name: 'AssetForm',
+export default {
 
-    data() {
-      return {
-        form: {
-            name: ""
-        }
-      }
-    },
+  name: 'AssetForm',
 
-    methods: {
-      create() {
-        axios.post(apiUrl + '/assets', this.form)
-        .then(() => {
-          this.$router.push({name: "Asset List"});
-        })
-        .catch((err) => {
-          alert(err);
-        });
+  data() {
+    return {
+      errMsg: "",
+      form: {
+        name: ""
       }
     }
+  },
+
+  methods: {
+    create() {
+      this.errMsg="";
+      axios.post(apiUrl + '/assets', this.form)
+          .then(() => {
+            this.$router.push({name: "Asset List"});
+          })
+          .catch((err) => {
+            if (err.response.status === 400) {
+              this.errMsg  = err.response.data;
+            } else {
+              alert(err);
+            }
+          });
+    }
+  },
+  components: {
+    Menu
+  },
 }
 
 </script>

@@ -1,35 +1,48 @@
 <template>
-
-
-  <h1>User Alice</h1>
-  <div class="container">
-    <div class="row" >
-      Name: Alice
+  <Menu/>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="box">
+          <div class="block">
+            <h1 class="title is-1">{{ user.nickname }}</h1>
+          </div>
+          <div class="block">
+            <h7 class="title is-7">Nickname: {{ user.nickname }}</h7>
+          </div>
+          <div class="block">
+            <h7 class="title is-7">Messengers: Telegram</h7>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="row">
-      E-Mail: alice@mail.df
-    </div>
-    <div class="row">
-      Phone: +932423434324
-    </div>
-    <div class="row">
-      Messengers: Telegram
-    </div>
-
-  </div>
-
+  </section>
 </template>
 
 <script>
+import Menu from './Menu.vue'
+
 export default {
   name: 'UserInfo',
+  components: {
+    Menu
+  },
   props: {
     msg: String
   },
   data() {
-    return {}
+    return {
+      user: {}
+    }
   },
-  methods: {}
+  mounted() {
+    this.init();
+  },
+  methods: {
+    init() {
+      this.user = JSON.parse(localStorage.getItem("user"));
+    }
+  }
 
 }
 
@@ -40,15 +53,4 @@ export default {
 <style scoped>
 
 
-body {
-  height: 100%;
-}
-
-.h-100 {
-  height: 100% !important;
-}
-
-main {
-  min-height: 30%;
-}
 </style>

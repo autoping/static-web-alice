@@ -1,25 +1,38 @@
 <template>
+  <Menu/>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="box">
+          <div class="block">
+            <h5 class="title is-5">Asset: {{ asset?.id }}</h5>
+            <button class="button is-primary" @click="navigateToCardForm()">Создать новый Card</button>
+          </div>
+          <div class="block">
+            <div class="columns  is-mobile" v-for="card in cards" v-bind:key="card.id">
+              <div class="column">{{ card.description }}</div>
+              <div class="column">
+                <button class="button" @click="navigateToCard(card.id)">View</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <div>
-    <span>Asset: {{ asset?.id }}</span>
-    <button @click="navigateToCardForm()">Создать новый Card</button>
-
-    <ul>
-      <li v-for="card in cards" v-bind:key="card.id">
-        {{ card.description }}
-        <button @click="navigateToCard(card.id)">View</button>
-      </li>
-    </ul>
-  </div>
-
+  </section>
 </template>
 
 <script>
 import axios from "axios";
+import Menu from "@/components/Menu";
 
-const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
+const apiUrl = process.env.VUE_APP_API_BASE_URL;
 
 export default {
+  components: {
+    Menu
+  },
   data() {
     return {
       asset: null,
