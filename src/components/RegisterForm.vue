@@ -7,22 +7,22 @@
         <div class="column is-4 is-offset-4">
 
           <form v-on:submit.prevent="signup" class="box">
-            <h5 class="title is-5">Please, provide basic information:</h5>
+            <h5 class="title is-5">Пожалуйста, заполните несколько полей:</h5>
             <div class="field">
-              <label class="label">Login *</label>
+              <label class="label">Логин *</label>
               <div class="control">
                 <input type="text" class="input" id="inputLogin" v-model="form.login"
                        placeholder="alice.smith@mailbox.net">
               </div>
             </div>
             <div class="field">
-              <label class="label">Nickname *</label>
+              <label class="label">Имя *</label>
               <div class="control">
                 <input type="text" class="input" id="inputNickname" v-model="form.nickname" placeholder="Alice">
               </div>
             </div>
             <div class="field">
-              <label class="label">Password *</label>
+              <label class="label">Пароль *</label>
               <div class="control">
                 <input type="password" class="input" id="inputPassword" v-model="form.password" placeholder="Password">
               </div>
@@ -30,9 +30,9 @@
             <div v-if="errMsg" class="notification is-danger is-light">
               {{ errMsg }}
             </div>
-            <button type="submit" class="button is-primary">Register</button>
+            <button type="submit" class="button is-primary">Создать</button>
             <button type="button" class="button">
-              <router-link :to="{ path: `/landing` }"> Later</router-link>
+              <router-link :to="{ path: `/landing` }"> Позже</router-link>
             </button>
 
 

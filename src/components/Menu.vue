@@ -17,11 +17,11 @@
 
 
         <div class="navbar-item" v-show="$route.name!=='Asset List'">
-          <router-link :to="{ path: `/asset-list` }" class="navbar-item"> Assets list</router-link>
+          <router-link :to="{ path: `/asset-list` }" class="navbar-item"> Предметы</router-link>
 
         </div>
         <div class="navbar-item" v-show="$route.name!=='About'">
-          <router-link :to="{ path: `/user-info` }" class="navbar-item"> User info</router-link>
+          <router-link :to="{ path: `/user-info` }" class="navbar-item"> Пользователь</router-link>
         </div>
 
       </div>
@@ -30,7 +30,7 @@
         <div class="navbar-item">
           <div class="buttons">
             <a class="button ">
-              <router-link :to="{ path: `/landing` }" > Logout</router-link>
+              <router-link :to="{ path: `/landing` }" > Выйти</router-link>
 
             </a>
           </div>

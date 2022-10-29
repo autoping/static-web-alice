@@ -8,16 +8,19 @@
             {{ errMsg }}
           </div>
           <div class="block">
-            <h5 class="title is-5"> Ваш кард: {{ card.description }}</h5>
+            <h5 class="title is-5"> Код {{ card.description }}</h5>
           </div>
           <div class="block">
-            Распечатайте данный qr и разместите на вашем объекте. <br>
+            Распечатайте данный qr и разместите на вашем Предмете. <br>
             Другие люди смогут с его помощью написать вам сообщение. <br>
             URL: {{ url }}
           </div>
-          <div class="block">
+          <div v-if="url" class="block">
             <qrcode-vue :value="value" :size="size" level="H"/>
           </div>
+          <button type="button" @click="navigateBackToAsset()" class="button">
+            Назад
+          </button>
         </div>
       </div>
     </div>
@@ -60,12 +63,15 @@ export default {
       axios.get(apiUrl + "/cards/" + cardId)
           .then((res) => {
             this.card = res.data;
-            this.url = johnWebUrl+"?cardId=" + this.card.id;
+            this.url = johnWebUrl + "?cardId=" + this.card.id;
             this.value = this.url;
           })
           .catch((err) => {
             this.errMsg = err
           });
+    },
+    navigateBackToAsset() {
+      this.$router.push({name: "Asset", query: {assetId: this.card.assetId}});
     }
   }
 }

@@ -4,16 +4,16 @@
       <div class="container">
         <div class="column is-4 is-offset-4">
           <form v-on:submit.prevent="signin" class="box">
-            <h5 class="title is-5">Signing in:</h5>
+            <h5 class="title is-5">Авторизация:</h5>
             <div class="field">
-              <label class="label">Login *</label>
+              <label class="label">Логин *</label>
               <div class="control">
                 <input type="email" class="input" id="inputLogin" v-model="form.login"
                        placeholder="alice.smith@mailbox.net">
               </div>
             </div>
             <div class="field">
-              <label class="label">Password *</label>
+              <label class="label">Пароль *</label>
               <div class="control">
                 <input type="password" class="input" id="inputPassword" v-model="form.password" placeholder="Password">
               </div>
@@ -22,7 +22,7 @@
             <div v-if="errMsg" class="notification is-danger is-light">
               {{ errMsg }}
             </div>
-            <button type="submit" class="button is-primary">Sign in</button>
+            <button type="submit" class="button is-primary">Войти</button>
           </form>
         </div>
       </div>

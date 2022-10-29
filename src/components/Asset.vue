@@ -8,14 +8,14 @@
             {{ errMsg }}
           </div>
           <div class="block">
-            <h5 class="title is-5">Asset: {{ asset?.name }}</h5>
-            <button class="button is-primary" @click="navigateToCardForm()">Создать новый Card</button>
+            <h5 class="title is-5">Предмет: {{ asset?.name }}</h5>
+            <button class="button is-primary" @click="navigateToCardForm()" :disabled="cards.length>=5">Создать Код</button>
           </div>
           <div class="block">
             <div class="columns  is-mobile" v-for="card in cards" v-bind:key="card.id">
               <div class="column">{{ card.description }}</div>
               <div class="column">
-                <button class="button" @click="navigateToCard(card.id)">View</button>
+                <button class="button" @click="navigateToCard(card.id)">Перейти</button>
               </div>
             </div>
           </div>

@@ -5,13 +5,13 @@
       <div class="container">
         <div class="box">
           <div class="block">
-            <button class="button is-primary" @click="navigateToAssetForm()">Создать Новый Asset</button>
+            <button class="button is-primary" :disabled="assets.length>=5" @click="navigateToAssetForm()">Создать Предмет</button>
           </div>
           <div class="block">
             <div class="columns is-mobile" v-for="asset in assets" v-bind:key="asset.id">
               <div class="column">{{ asset.name }}</div>
               <div class="column">
-                <button class="button" @click="navigateToAsset(asset.id)">View</button>
+                <button class="button" @click="navigateToAsset(asset.id)">Перейти</button>
               </div>
             </div>
           </div>

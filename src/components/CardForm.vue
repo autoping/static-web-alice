@@ -4,10 +4,10 @@
     <div class="hero-body">
       <div class="container">
         <div class="box">
-          <h5 class="title is-5">New Card</h5>
+          <h5 class="title is-5">Новый Код</h5>
           <form v-on:submit.prevent="create">
             <div class="field">
-              <label class="label" for="inputDescription">Description</label>
+              <label class="label" for="inputDescription">Описание</label>
               <div class="control">
                 <input type="text" class="input" id="inputDescription" v-model="form.description"
                        placeholder="Новый QR">
@@ -17,7 +17,10 @@
             <div v-if="errMsg" class="notification is-danger is-light">
               {{ errMsg }}
             </div>
-            <button type="submit" class="button is-primary">Create</button>
+            <button type="submit" class="button is-primary">Создать</button>
+            <button type="button" @click="navigateBackToAsset()" class="button">
+              Назад
+            </button>
           </form>
         </div>
       </div>
@@ -76,6 +79,10 @@ export default {
               alert(err);
             }
           });
+    },
+
+    navigateBackToAsset() {
+      this.$router.push({name: "Asset", query: {assetId: this.form.assetId }});
     }
   }
 }

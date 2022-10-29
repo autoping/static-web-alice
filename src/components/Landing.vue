@@ -6,11 +6,11 @@
         <!--        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">-->
       </div>
       <a class="navbar-item">
-        <router-link :to="{ path: `/register` }"> Sign up</router-link>
+        <router-link :to="{ path: `/register` }"> Новый пользователь</router-link>
       </a>
 
       <a class="navbar-item">
-        <router-link :to="{ path: `/login` }"> Sign in</router-link>
+        <router-link :to="{ path: `/login` }"> Войти</router-link>
       </a>
     </div>
 
@@ -78,9 +78,9 @@
               Всего несколько шагов
             </h1>
             <ul>
-              <li>Зарегистрируйтесь в сервисе</li>
-              <li>Добавьте Предмет, назначте код</li>
-              <li>Распечатайте qr-код и наклейте на ваш предмет что бы люди могли связаться с вами</li>
+              <li>Создайте пользователя</li>
+              <li>Добавьте Предмет и назначте Код</li>
+              <li>Распечатайте Код и наклейте на ваш предмет, что бы люди могли связаться с вами</li>
             </ul>
 
           </div>

@@ -8,10 +8,10 @@
             <h1 class="title is-1">{{ user.nickname }}</h1>
           </div>
           <div class="block">
-            <h7 class="title is-7">Nickname: {{ user.nickname }}</h7>
+            <h7 class="title is-7">Имя: {{ user.nickname }}</h7>
           </div>
           <div class="block">
-            <h7 class="title is-7">Messengers: Telegram</h7>
+            <h7 class="title is-7">Месенджер: Телеграм</h7>
           </div>
         </div>
       </div>

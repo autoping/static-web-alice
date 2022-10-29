@@ -4,10 +4,10 @@
     <div class="hero-body">
       <div class="container">
         <div class="box">
-          <h5 class="title is-5">New Asset</h5>
+          <h5 class="title is-5">Новый Предмет</h5>
           <form v-on:submit.prevent="create">
             <div class="field">
-              <label class="label" for="inputName">Name *</label>
+              <label class="label" for="inputName">Имя *</label>
               <div class="control">
                 <input type="text" class="input" id="inputName" v-model="form.name" placeholder="Мой автомобиль">
               </div>
@@ -16,7 +16,7 @@
             <div v-if="errMsg" class="notification is-danger is-light">
               {{ errMsg }}
             </div>
-            <button type="submit" class="button is-primary">Create</button>
+            <button type="submit" class="button is-primary">Создать</button>
 
           </form>
         </div>
