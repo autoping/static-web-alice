@@ -58,7 +58,7 @@ export default {
       this.asset = {
         id: this.$route.query.assetId
       };
-      axios.get(apiUrl + "/cards")
+      axios.get(apiUrl + "/assets/"+this.$route.query.assetId+"/cards")
           .then((res) => {
             this.cards = res.data;
           })

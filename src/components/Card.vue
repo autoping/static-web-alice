@@ -4,8 +4,20 @@
     <div class="hero-body">
       <div class="container">
         <div class="box">
-          <qrcode-vue :value="value" :size="size" level="H"/>
-
+          <div v-if="errMsg" class="notification is-danger is-light">
+            {{ errMsg }}
+          </div>
+          <div class="block">
+            <h5 class="title is-5"> Ваш кард: {{ card.description }}</h5>
+          </div>
+          <div class="block">
+            Распечатайте данный qr и разместите на вашем объекте. <br>
+            Другие люди смогут с помощью него написать вам сообщение. <br>
+            URL: {{ url }}
+          </div>
+          <div class="block">
+            <qrcode-vue :value="value" :size="size" level="H"/>
+          </div>
         </div>
       </div>
     </div>
@@ -24,9 +36,11 @@ export default {
 
   data() {
     return {
-      card: null,
+      card: {},
       value: "",
       size: 300,
+      url: null,
+      errMsg: null
     }
   },
 
@@ -45,10 +59,11 @@ export default {
       axios.get(apiUrl + "/cards/" + cardId)
           .then((res) => {
             this.card = res.data;
-            this.value = "http://autoping-static-web-john.s3-website.eu-central-1.amazonaws.com?cardId=" + this.card.id;
+            this.url = "http://autoping-static-web-john.s3-website.eu-central-1.amazonaws.com?cardId=" + this.card.id;
+            this.value = this.url;
           })
           .catch((err) => {
-            alert(err);
+            this.errMsg = err
           });
     }
   }
