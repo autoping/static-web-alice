@@ -4,8 +4,11 @@
     <div class="hero-body">
       <div class="container">
         <div class="box">
+          <div v-if="errMsg" class="notification is-danger is-light">
+            {{ errMsg }}
+          </div>
           <div class="block">
-            <h5 class="title is-5">Asset: {{ asset?.id }}</h5>
+            <h5 class="title is-5">Asset: {{ asset?.name }}</h5>
             <button class="button is-primary" @click="navigateToCardForm()">Создать новый Card</button>
           </div>
           <div class="block">
@@ -36,7 +39,8 @@ export default {
   data() {
     return {
       asset: null,
-      cards: []
+      cards: [],
+      errMsg: null
     }
   },
 
@@ -58,12 +62,16 @@ export default {
       this.asset = {
         id: this.$route.query.assetId
       };
+      axios.get(apiUrl + "/assets/"+this.$route.query.assetId)
+          .then((res) => {
+            this.asset = res.data;
+          });
       axios.get(apiUrl + "/assets/"+this.$route.query.assetId+"/cards")
           .then((res) => {
             this.cards = res.data;
           })
           .catch((err) => {
-            alert(err);
+            this.errMsg = err.response.data;
           });
     }
   }
