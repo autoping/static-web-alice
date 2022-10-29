@@ -12,7 +12,7 @@
           </div>
           <div class="block">
             Распечатайте данный qr и разместите на вашем объекте. <br>
-            Другие люди смогут с помощью него написать вам сообщение. <br>
+            Другие люди смогут с его помощью написать вам сообщение. <br>
             URL: {{ url }}
           </div>
           <div class="block">
@@ -29,6 +29,7 @@ import Menu from './Menu.vue'
 import axios from 'axios';
 
 const apiUrl = process.env.VUE_APP_API_BASE_URL;
+const johnWebUrl = "http://autoping-static-web-john.s3-website.eu-central-1.amazonaws.com";
 
 import QrcodeVue from 'qrcode.vue'
 
@@ -59,7 +60,7 @@ export default {
       axios.get(apiUrl + "/cards/" + cardId)
           .then((res) => {
             this.card = res.data;
-            this.url = "http://autoping-static-web-john.s3-website.eu-central-1.amazonaws.com?cardId=" + this.card.id;
+            this.url = johnWebUrl+"?cardId=" + this.card.id;
             this.value = this.url;
           })
           .catch((err) => {
