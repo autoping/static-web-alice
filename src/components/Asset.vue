@@ -15,7 +15,7 @@
             <div class="columns  is-mobile" v-for="card in cards" v-bind:key="card.id">
               <div class="column">{{ card.description }}</div>
               <div class="column">
-                <button class="button" @click="navigateToCard(card.id)">Перейти</button>
+                <button class="button" @click="navigateToCard(card.id)">Посмотреть</button>
               </div>
             </div>
           </div>

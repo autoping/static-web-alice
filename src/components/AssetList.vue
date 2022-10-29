@@ -11,7 +11,7 @@
             <div class="columns is-mobile" v-for="asset in assets" v-bind:key="asset.id">
               <div class="column">{{ asset.name }}</div>
               <div class="column">
-                <button class="button" @click="navigateToAsset(asset.id)">Перейти</button>
+                <button class="button" @click="navigateToAsset(asset.id)">Посмотреть</button>
               </div>
             </div>
           </div>

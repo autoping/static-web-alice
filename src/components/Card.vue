@@ -32,7 +32,7 @@ import Menu from './Menu.vue'
 import axios from 'axios';
 
 const apiUrl = process.env.VUE_APP_API_BASE_URL;
-const johnWebUrl = "http://autoping-static-web-john.s3-website.eu-central-1.amazonaws.com";
+const johnWebUrl = process.env.VUE_APP_WEB_JOHN_BASE_URL;
 
 import QrcodeVue from 'qrcode.vue'
 
