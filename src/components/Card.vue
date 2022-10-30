@@ -12,12 +12,15 @@
           </div>
           <div class="block">
             Распечатайте данный qr и разместите на вашем Предмете. <br>
-            Другие люди смогут с его помощью написать вам сообщение. <br>
+            Другие люди смогут с его помощью написать вам сообщение.
+          </div>
+          <div class="block">
             URL: {{ url }}
           </div>
-          <div v-if="url" class="block">
+          <div id="qrcode" v-if="url" class="block">
             <qrcode-vue :value="value" :size="size" level="H"/>
           </div>
+            <button class="button is-primary" @click="saveToFile()">Скачать QR</button>
           <button type="button" @click="navigateBackToAsset()" class="button">
             Назад
           </button>
@@ -35,6 +38,8 @@ const apiUrl = process.env.VUE_APP_API_BASE_URL;
 const johnWebUrl = process.env.VUE_APP_WEB_JOHN_BASE_URL;
 
 import QrcodeVue from 'qrcode.vue'
+import domtoimage from "dom-to-image-more";
+import fsaver from 'file-saver';
 
 export default {
 
@@ -72,6 +77,12 @@ export default {
     },
     navigateBackToAsset() {
       this.$router.push({name: "Asset", query: {assetId: this.card.assetId}});
+    },
+    saveToFile() {
+      let node = document.getElementById("qrcode");
+      domtoimage.toBlob(node).then(function (blob) {
+        fsaver.saveAs(blob, "qr-code.png");
+      });
     }
   }
 }
