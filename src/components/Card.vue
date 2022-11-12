@@ -17,10 +17,13 @@
           <div class="block">
             URL: {{ url }}
           </div>
-          <div ref="capture" id="qrcode" v-if="url" class="block">
+          <div ref="capture" class="block">
             <qrcode-vue :value="value" :size="size" level="H"/>
+            <!--            v-if="url"-->
           </div>
-          <button class="button is-primary" @click="saveToFile()">Скачать QR</button>
+          <button class="button is-primary" @click="saveToFile()">
+            Скачать QR
+          </button>
           <button type="button" @click="navigateBackToAsset()" class="button">
             Назад
           </button>
@@ -81,9 +84,15 @@ export default {
     saveToFile() {
       // let node = document.getElementById("qrcode");
       const capture = this.$refs.capture;
-      domtoimage.toBlob(capture)
-          .then(function (blob) {
-            fsaver.saveAs(blob, "qr-code.png");
+
+      //here is a workarond for safari https://github.com/tsayen/dom-to-image/issues/343 or htmltocanvas should be used
+      domtoimage
+          .toBlob(capture)
+          .then(() => {
+            domtoimage.toBlob(capture)
+                .then((blob) => {
+                  fsaver.saveAs(blob, "qr-code.png");
+                })
           });
     }
   }
