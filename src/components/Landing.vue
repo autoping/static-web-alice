@@ -35,7 +35,7 @@
           is-5-widescreen
           is-5-fullhd " data-aos="fade-down">
             <h1 class="title titled is-1 mb-6">
-              Получать сообщения не оставляя телефон легко!
+              Быть на связи не оставляя телефон легко!
             </h1>
           </div>
           <div data-aos="fade-right" class="column
@@ -75,13 +75,13 @@
           is-5-widescreen is-offset-1-widescreen
           is-5-fullhd is-offset-1-fullhd">
             <h1 class="titled title is-1 mb-6">
-              Всего несколько шагов
+              Всего несколько шагов:
             </h1>
-            <ul>
+            <ol>
               <li>Создайте пользователя</li>
-              <li>Добавьте Предмет и назначте Код</li>
+              <li>Добавьте Предмет и назначьте Код</li>
               <li>Распечатайте Код и наклейте на ваш предмет, что бы люди могли связаться с вами</li>
-            </ul>
+            </ol>
 
           </div>
 
