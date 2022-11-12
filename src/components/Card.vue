@@ -18,8 +18,7 @@
             URL: {{ url }}
           </div>
           <div ref="capture" class="block">
-            <qrcode-vue :value="value" :size="size" level="H"/>
-            <!--            v-if="url"-->
+            <qrcode-vue v-if="url" :value="value" :size="size" level="H"/>
           </div>
           <button class="button is-primary" @click="saveToFile()">
             Скачать QR
