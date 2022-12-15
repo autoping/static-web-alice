@@ -11,7 +11,7 @@
             <div class="field">
               <label class="label">Логин *</label>
               <div class="control">
-                <input type="text" class="input" id="inputLogin" v-model="form.login"
+                <input type="email" class="input" id="inputLogin" v-model="form.login"
                        placeholder="alice.smith@mailbox.net">
               </div>
             </div>
