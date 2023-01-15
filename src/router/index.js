@@ -70,6 +70,11 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes
-})
+});
+
+const DEFAULT_TITLE = 'pinqr';
+router.beforeEach((to) => {
+  document.title =  to.name || DEFAULT_TITLE;
+});
 
 export default router

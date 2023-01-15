@@ -9,31 +9,44 @@
           <form v-on:submit.prevent="signup" class="box">
             <h5 class="title is-5">Пожалуйста, заполните несколько полей:</h5>
             <div class="field">
-              <label class="label">Логин *</label>
-              <div class="control">
-                <input type="text" class="input" id="inputLogin" v-model="form.login"
-                       placeholder="alice.smith@mailbox.net">
-              </div>
-            </div>
-            <div class="field">
               <label class="label">Имя *</label>
               <div class="control">
                 <input type="text" class="input" id="inputNickname" v-model="form.nickname" placeholder="Alice">
               </div>
+              <p class="help">Это имя будет видно при отправке сообщения</p>
             </div>
+
+            <div class="field">
+              <label class="label">Почта *</label>
+              <div class="control">
+                <input type="email" class="input" id="inputLogin" v-model="form.login"
+                  placeholder="alice.smith@mailbox.net">
+              </div>
+            </div>
+
             <div class="field">
               <label class="label">Пароль *</label>
               <div class="control">
                 <input type="password" class="input" id="inputPassword" v-model="form.password" placeholder="Password">
               </div>
             </div>
+            <div class="field">
+              <label class="label">Пароль еще раз *</label>
+              <div class="control">
+                <input type="password" class="input" id="inputPassword" v-model="form.password_repeat"
+                  placeholder="Password">
+              </div>
+            </div>
             <div v-if="errMsg" class="notification is-danger is-light">
               {{ errMsg }}
             </div>
-            <button type="submit" class="button is-primary">Создать</button>
-            <button type="button" class="button">
-              <router-link :to="{ path: `/landing` }"> Позже</router-link>
+            <button type="submit" class="button is-primary">Зарегистрироваться</button>
+            <button type="button" class="button is-ghost">
+              <router-link :to="{ path: `/login` }"> Уже есть аккаунт</router-link>
             </button>
+            <!-- <button type="button" class="button">
+              <router-link :to="{ path: `/landing` }"> Позже</router-link>
+            </button> -->
 
 
           </form>
@@ -50,7 +63,6 @@
 import axios from 'axios';
 
 const apiUrl = process.env.VUE_APP_API_BASE_URL;
-// const apiUrl = "https://v9cbonidud.execute-api.eu-central-1.amazonaws.com/dev";
 
 export default {
 
@@ -63,25 +75,46 @@ export default {
       form: {
         login: "",
         nickname: "",
-        password: ""
+        password: "",
+        password_repeat: ""
       }
     }
   },
 
   methods: {
     signup() {
-      this.errMsg="";
+      this.errMsg = "";
+      if (this.form.password != this.form.password_repeat) {
+        this.errMsg = "Пароль должен совпадать!";
+        return;
+      }
       axios.post(apiUrl + '/users', this.form)
-          .then(() => {
-            this.$router.push('Login');
-          })
-          .catch((err) => {
-            if (err.response.status === 400) {
-              this.errMsg  = err.response.data;
-            } else {
-              alert(err);
-            }
-          });
+        .then(() => {
+          axios.post(apiUrl + '/login', { login: this.form.login, password: this.form.password })
+            .then((res) => {
+              localStorage.setItem('accessToken', res.data.accessToken);
+              return axios.get(apiUrl + '/users/me');
+            })
+            .then(() => {
+
+              this.$router.push({ name: "RegisterBot" });
+
+            })
+            .catch((err) => {
+              if (err.response.status === 501) {
+                this.errMsg = "Логин или пароль не верные, попробуйте еще раз!";
+              } else {
+                alert(err);
+              }
+            });
+        })
+        .catch((err) => {
+          if (err.response.status === 400) {
+            this.errMsg = err.response.data;
+          } else {
+            alert(err);
+          }
+        });
     }
   }
 }
