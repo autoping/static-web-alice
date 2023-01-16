@@ -20,6 +20,10 @@
           <div ref="capture" class="block">
             <qrcode-vue v-if="url" :value="value" :size="size" level="H"/>
           </div>
+          <div class="block">
+            Что бы проверить доставку сообщений перейдите по
+            <a target="blank" :href="url">этой ссылке</a>
+          </div>
           <button class="button is-primary" @click="saveToFile()">
             Скачать QR
           </button>
