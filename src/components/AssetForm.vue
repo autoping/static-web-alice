@@ -1,5 +1,5 @@
 <template>
-  <Menu/>
+  <Menu />
   <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
@@ -48,18 +48,25 @@ export default {
 
   methods: {
     create() {
-      this.errMsg="";
+      this.errMsg = "";
       axios.post(apiUrl + '/assets', this.form)
-          .then(() => {
-            this.$router.push({name: "Asset List"});
-          })
-          .catch((err) => {
-            if (err.response.status === 400) {
-              this.errMsg  = err.response.data;
-            } else {
-              alert(err);
-            }
-          });
+        .then((resp) => {
+
+          // this.$router.push({ name: 'Asset',query: { assetId: resp.data.id } });
+          axios.post(apiUrl + '/cards',{
+              assetId: resp.data.id,
+              description: "qr_for_" + resp.data.name})
+            .then((res) => {
+              this.$router.push({ name: "Card", query: { cardId: res.data.id } });
+            })
+        })
+        .catch((err) => {
+          if (err.response.status === 400) {
+            this.errMsg = err.response.data;
+          } else {
+            alert(err);
+          }
+        });
     }
   },
   components: {

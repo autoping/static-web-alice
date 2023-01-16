@@ -1,13 +1,20 @@
 <template>
-  <Menu/>
+  <Menu />
   <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
         <div class="box">
           <div class="block">
-            <button class="button is-primary" :disabled="assets.length>=5" @click="navigateToAssetForm()">Создать Предмет</button>
+            <button class="button is-primary " :disabled="assets.length >= 5" @click="navigateToAssetForm()">
+              <span class="icon">
+                <i class="fas fa-thin fa-plus"></i>
+              </span>  
+              <span>Добавить</span>
+            </button>
+
           </div>
           <div class="block">
+            <div v-if="!assets || !assets.length">У вас пока нет ни одного предмета. </div>
             <div class="columns is-mobile" v-for="asset in assets" v-bind:key="asset.id">
               <div class="column">{{ asset.name }}</div>
               <div class="column">
@@ -51,21 +58,21 @@ export default {
 
     init() {
       axios.get(apiUrl + "/assets")
-          .then((res) => {
-            this.assets = res.data;
-          })
-          .catch((err) => {
-            alert(err);
-          });
+        .then((res) => {
+          this.assets = res.data;
+        })
+        .catch((err) => {
+          alert(err);
+        });
     },
 
     navigateToAssetForm() {
-      this.$router.push({name: "New Asset"});
+      this.$router.push({ name: "New Asset" });
     },
 
     navigateToAsset(assetId) {
       console.log(assetId);
-      this.$router.push({name: "Asset", query: {assetId: assetId}});
+      this.$router.push({ name: "Asset", query: { assetId: assetId } });
     }
   }
 }

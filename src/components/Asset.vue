@@ -9,7 +9,12 @@
           </div>
           <div class="block">
             <h5 class="title is-5">Предмет: {{ asset?.name }}</h5>
-            <button class="button is-primary" @click="navigateToCardForm()" :disabled="cards.length>=5">Создать Код</button>
+            <button class="button is-primary" @click="navigateToCardForm()" :disabled="cards.length>=5">
+              <span class="icon">
+                <i class="fas fa-thin fa-plus"></i>
+              </span>  
+              <span>Добавить qr</span>
+            </button>
           </div>
           <div class="block">
             <div class="columns  is-mobile" v-for="card in cards" v-bind:key="card.id">

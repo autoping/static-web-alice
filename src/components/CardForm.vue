@@ -69,7 +69,6 @@ export default {
       this.errMsg = "";
       axios.post(apiUrl + '/cards', this.form)
           .then((res) => {
-            console.log("Card created = " + JSON.stringify(res));
             this.$router.push({name: "Card", query: {cardId: res.data.id}});
           })
           .catch((err) => {
