@@ -9,6 +9,7 @@ import Asset from "@/components/Asset";
 import Card from "@/components/Card";
 import Landing from "@/components/Landing";
 import RegisterBotForm from "@/components/RegisterBotForm";
+import ResetPasswordForm from "@/components/ResetPasswordForm";
 
 const routes = [
   {
@@ -64,6 +65,11 @@ const routes = [
     path: '/card',
     name: 'Card',
     component: Card
+  },
+  {
+    path: '/reset-password',
+    name: 'Reset Password',
+    component: ResetPasswordForm
   }
 ]
 
