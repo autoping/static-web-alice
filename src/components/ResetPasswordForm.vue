@@ -3,7 +3,7 @@
     <div class="hero-body">
       <div class="container">
         <div class="column is-4 is-offset-4">
-          <form v-on:submit.prevent="signin" class="box">
+          <form v-on:submit.prevent="reset" class="box">
             <h5 class="title is-5">Сбрасывание пароля:</h5>
             <div class="field">
               <label class="label">Пароль *</label>
@@ -55,37 +55,42 @@ export default {
   },
 
   created() {
-    let uri = window.location.href.split('?');
 
-    if (uri.length == 2) {
-      let vars = uri[1].split('&');
-      let getVars = {};
-      let tmp = '';
-      vars.forEach(function (v) {
-        tmp = v.split('=');
-        if (tmp.length == 2)
-          getVars[tmp[0]] = tmp[1];
-      });
-      this.form.token = getVars['token'];
-    }
 
   },
 
   methods: {
-    signin() {
-      this.form.token = 
-      this.errMsg="";
+    reset() {
+
+      let uri = window.location.href.split('?');
+
+      if (uri.length == 2) {
+        let vars = uri[1].split('&');
+        let getVars = {};
+        let tmp = '';
+        vars.forEach(function (v) {
+          tmp = v.split('=');
+          if (tmp.length == 2)
+            getVars[tmp[0]] = tmp[1];
+        });
+        this.form.token = getVars['token'];
+      }
+
+      this.errMsg = "";
       axios.post(apiUrl + '/recover-password', this.form)
-          .then((res) => {
-            localStorage.setItem('accessToken', res.data.accessToken);
-            return axios.get(apiUrl+'/login');
-          })
+        .then((res) => {
+          if(res){
+            console.log(res)
+          }
+          // localStorage.setItem('accessToken', res.data.accessToken);
+          return axios.get(apiUrl + '/login');
+        })
 
-          .catch((err) => {
+        .catch((err) => {
 
-              alert(err);
-            
-          });
+          alert(err);
+
+        });
     }
   }
 }

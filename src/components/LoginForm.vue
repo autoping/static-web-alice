@@ -70,7 +70,7 @@ export default {
             }
           })
           .catch((err) => {
-            if (err.response.status === 501) {
+            if (err.response && err.response.status === 401) {
               this.errMsg = "Логин или пароль не верные, попробуйте еще раз!";
             } else {
               alert(err);
