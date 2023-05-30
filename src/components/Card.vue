@@ -18,14 +18,19 @@
             URL: {{ url }}
           </div>
           <div ref="capture" class="block">
-            <qrcode-vue v-if="url" :value="value" :size="size" level="H"/>
+          <div  ref="capture">
+            <qrcode-vue v-if="url" :value="value" :size="size" level="L" render-as="svg"/>
+            </div>
           </div>
           <div class="block">
             Что бы проверить доставку сообщений перейдите по
             <a target="blank" :href="url">этой ссылке</a>
           </div>
           <button class="button is-primary" @click="saveToFile()">
-            Скачать QR
+            Сохранить QR
+          </button>
+          <button class="button is-primary" @click="navigateCardExport()">
+            Создать стикер
           </button>
           <button type="button" @click="navigateBackToAsset()" class="button">
             Назад
@@ -84,13 +89,16 @@ export default {
     navigateBackToAsset() {
       this.$router.push({name: "Asset", query: {assetId: this.card.assetId}});
     },
+    navigateCardExport() {
+      this.$router.push({name: "CardExport", query: {cardId: this.card.id}});
+    },
     saveToFile() {
       // let node = document.getElementById("qrcode");
       const capture = this.$refs.capture;
 
       //here is a workarond for safari https://github.com/tsayen/dom-to-image/issues/343 or htmltocanvas should be used
       domtoimage
-          .toBlob(capture)
+          .toBlob(capture,{height: 1000, width: 1000})
           .then(() => {
             domtoimage.toBlob(capture)
                 .then((blob) => {
