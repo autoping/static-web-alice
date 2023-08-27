@@ -59,10 +59,7 @@
   <section class="hero is-medium">
     <div class="hero-body">
       <div class="container">
-        <div class="columns">
-          <div class="column is-two-thirds">
-            <img src="../assets/images/web/safe.png" alt="PinQR">
-          </div>
+        <div class="columns  reverse-row-order">
           <div class="column">
             <p class="title is-large">
               Безопасно
@@ -75,8 +72,10 @@
               рекламы и мошенников.
             </p>
           </div>
+          <div class="column is-two-thirds">
+            <img src="../assets/images/web/safe.png" alt="PinQR">
+          </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -101,7 +100,6 @@
             <img src="../assets/images/web/fast.png" alt="PinQR">
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -109,10 +107,7 @@
   <section class="hero is-medium">
     <div class="hero-body">
       <div class="container">
-        <div class="columns">
-          <div class="column is-two-thirds">
-            <img src="../assets/images/web/simple.png" alt="PinQR">
-          </div>
+        <div class="columns reverse-row-order">
           <div class="column">
             <p class="title is-large">
               Просто
@@ -125,8 +120,10 @@
               найти ему путь домой.
             </p>
           </div>
+          <div class="column is-two-thirds">
+            <img src="../assets/images/web/simple.png" alt="PinQR">
+          </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -150,7 +147,6 @@
             <img src="../assets/images/web/things.png" alt="PinQR">
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -158,10 +154,7 @@
   <section class="hero is-medium">
     <div class="hero-body">
       <div class="container">
-        <div class="columns">
-          <div class="column is-two-thirds">
-            <img src="../assets/images/web/announcement.png" alt="PinQR">
-          </div>
+        <div class="columns reverse-row-order">
           <div class="column">
             <p class="title is-large">
               Актуально
@@ -174,8 +167,10 @@
               обратной связи?
             </p>
           </div>
+          <div class="column is-two-thirds">
+            <img src="../assets/images/web/announcement.png" alt="PinQR">
+          </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -189,6 +184,56 @@
     </div>
     <div class="hero-body">
       <div class="container">
+        <div class="columns">
+          <div class="column">
+            <img src="../assets/images/web/icons/add_acc.png" alt="add acc">
+          </div>
+          <div class="column">
+            <p class="subtitle">
+              Регистрируйтесь. Это очень просто!
+            </p>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <img src="../assets/images/web/icons/messendger.png" alt="add qr">
+          </div>
+          <div class="column">
+            <p class="subtitle">
+              Подключайте удобный вам мессенджер.
+            </p>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <img src="../assets/images/web/icons/add_qr.png" alt="add qr">
+          </div>
+          <div class="column">
+            <p class="subtitle">
+              Добавляйте до 10 предметов и создавайте QR-коды для них.
+            </p>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <img src="../assets/images/web/icons/print.png" alt="print">
+          </div>
+          <div class="column">
+            <p class="subtitle">
+              Распечатайте QR самостоятельно или отправьте заказ в ближайшую типографию.
+            </p>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <img src="../assets/images/web/icons/online.png" alt="print">
+          </div>
+          <div class="column">
+            <p class="subtitle">
+              Теперь вы на связи!
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
