@@ -8,13 +8,13 @@
             <a class="navbar-item">
               <img src="../assets/images/logo.png" alt="PinQR">
             </a>
-            <span class="navbar-burger" data-target="navbarMenuHeroA">
+            <span class="navbar-burger" data-target="navbarMenuHeroA" @click="showMobileMenu = !showMobileMenu">
               <span></span>
               <span></span>
               <span></span>
             </span>
           </div>
-          <div id="navbarMenuHeroA" class="navbar-menu">
+          <div id="navbarMenuHeroA" class="navbar-menu" v-bind:class="{ 'is-active': showMobileMenu }">
             <div class="navbar-end">
               <a class="navbar-item ">
                 Преимущества
@@ -38,11 +38,11 @@
       <div class="container">
         <div class="columns">
           <div class="column is-two-thirds">
-            <p class="title is-large">
+            <p class="title is-size-1">
               PinQR - Будь на связи!
             </p>
             <br>
-            <p class="subtitle">
+            <p class="subtitle has-text-black">
               Удобный сервис доставки сообщений без <br>необходимости публикации личных данных
             </p>
             <br>
@@ -61,11 +61,10 @@
       <div class="container">
         <div class="columns  reverse-row-order">
           <div class="column">
-            <p class="title is-large">
+            <p class="title is-large has-text-primary">
               Безопасно
             </p>
-            <br>
-            <p class="subtitle">
+            <p class="subtitle has-text-black">
               Скройте свой номер <br>
               телефона и оградите <br>
               себя от назойливой<br>
@@ -85,11 +84,10 @@
       <div class="container">
         <div class="columns">
           <div class="column">
-            <p class="title is-large">
+            <p class="title is-large has-text-primary">
               Быстро
             </p>
-            <br>
-            <p class="subtitle">
+            <p class="subtitle has-text-black">
               Беспокоитесь, что <br>
               машина может помешать <br>
               на парковке? Добавьте<br>
@@ -109,11 +107,10 @@
       <div class="container">
         <div class="columns reverse-row-order">
           <div class="column">
-            <p class="title is-large">
+            <p class="title is-large has-text-primary">
               Просто
             </p>
-            <br>
-            <p class="subtitle">
+            <p class="subtitle has-text-black">
               У вас есть домашний <br>
               питомец? Ваши контакты <br>
               на ошейнике помогут<br>
@@ -133,11 +130,10 @@
       <div class="container">
         <div class="columns">
           <div class="column">
-            <p class="title is-large">
+            <p class="title is-large has-text-primary">
               Доступно
             </p>
-            <br>
-            <p class="subtitle">
+            <p class="subtitle has-text-black">
               Хотите, чтобы с вами <br>
               связался нашедший <br>
               ваши вещи человек.
@@ -156,11 +152,10 @@
       <div class="container">
         <div class="columns reverse-row-order">
           <div class="column">
-            <p class="title is-large">
+            <p class="title is-large has-text-primary">
               Актуально
             </p>
-            <br>
-            <p class="subtitle">
+            <p class="subtitle has-text-black">
               Вы хотите сделать <br>
               объявление в подъезде, <br>
               но без телефона для<br>
@@ -273,7 +268,9 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      showMobileMenu: false
+    }
   },
 
   mounted() {
