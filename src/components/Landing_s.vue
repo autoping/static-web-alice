@@ -16,10 +16,10 @@
           </div>
           <div id="navbarMenuHeroA" class="navbar-menu" v-bind:class="{ 'is-active': showMobileMenu }">
             <div class="navbar-end">
-              <a class="navbar-item ">
+              <a class="navbar-item has-text-black" @click="scrollMeTo('advantages')">
                 Преимущества
               </a>
-              <a class="navbar-item ">
+              <a class="navbar-item has-text-black" @click="scrollMeTo('howToDocs')">
                 Инструкции
               </a>
               <span class="navbar-item">
@@ -46,7 +46,9 @@
               Удобный сервис доставки сообщений без <br>необходимости публикации личных данных
             </p>
             <br>
-            <button class="button is-black is-large">Создать аккаунт</button>
+            <a class="button is-black is-large">
+              <router-link :to="{ path: `/register` }"> Создать аккаунт</router-link>
+            </a>
           </div>
           <div class="column">
             <img src="../assets/images/web/main.png" alt="PinQR">
@@ -80,7 +82,7 @@
   </section>
 
   <section class="hero is-medium is-light">
-    <div class="hero-body">
+    <div class="hero-body" ref="advantages">
       <div class="container">
         <div class="columns">
           <div class="column">
@@ -173,58 +175,58 @@
   <section class="hero is-primary is-medium">
     <br>
     <div class="hero-head">
-      <div class="container has-text-centered">
+      <div class="container has-text-centered" ref="howToDocs">
         <p class="title is-large">C PinQR это легко</p>
       </div>
     </div>
     <div class="hero-body">
       <div class="container">
-        <div class="columns">
-          <div class="column">
+        <div class="columns is-vcentered is-mobile">
+          <div class="column is-vcentered is-one-fifth">
             <img src="../assets/images/web/icons/add_acc.png" alt="add acc">
           </div>
-          <div class="column">
-            <p class="subtitle">
+          <div class="column is-vcentered">
+            <p class="subtitle subtitle has-text-black">
               Регистрируйтесь. Это очень просто!
             </p>
           </div>
         </div>
-        <div class="columns">
-          <div class="column">
+        <div class="columns is-vcentered is-mobile">
+          <div class="column is-vcentered is-one-fifth">
             <img src="../assets/images/web/icons/messendger.png" alt="add qr">
           </div>
           <div class="column">
-            <p class="subtitle">
+            <p class="subtitle subtitle has-text-black">
               Подключайте удобный вам мессенджер.
             </p>
           </div>
         </div>
-        <div class="columns">
-          <div class="column">
+        <div class="columns is-vcentered is-mobile">
+          <div class="column is-vcentered is-one-fifth">
             <img src="../assets/images/web/icons/add_qr.png" alt="add qr">
           </div>
           <div class="column">
-            <p class="subtitle">
+            <p class="subtitle subtitle has-text-black">
               Добавляйте до 10 предметов и создавайте QR-коды для них.
             </p>
           </div>
         </div>
-        <div class="columns">
-          <div class="column">
+        <div class="columns is-vcentered is-mobile">
+          <div class="column is-one-fifth">
             <img src="../assets/images/web/icons/print.png" alt="print">
           </div>
           <div class="column">
-            <p class="subtitle">
+            <p class="subtitle has-text-black">
               Распечатайте QR самостоятельно или отправьте заказ в ближайшую типографию.
             </p>
           </div>
         </div>
-        <div class="columns">
-          <div class="column">
+        <div class="columns is-vcentered is-mobile">
+          <div class="column is-one-fifth">
             <img src="../assets/images/web/icons/online.png" alt="print">
           </div>
           <div class="column">
-            <p class="subtitle">
+            <p class="subtitle has-text-black">
               Теперь вы на связи!
             </p>
           </div>
@@ -236,28 +238,32 @@
   <section class="hero is-dark is-medium">
     <div class="hero-body">
       <div class="container">
-        <div class="columns">
+        <div class="columns reverse-row-order">
+          <div class="column">
+            <div class="columns is-mobile">
+              <div class="column is-size-6">
+                <p class="title is-size-6">Компания</p>
+                <p class="subtitle is-size-7">О нас<br>
+                  Приватность<br>
+                  Для СМИ<br>
+                  Контакты
+                </p>
+              </div>
+              <div class="column">
+                <p class="title is-size-6">Соцсети</p>
+                <p class="subtitle is-size-7">Телеграмм<br>
+                  Вконтакте</p>
+              </div>
+              <div class="column">
+                <p class="title is-size-6">Помощь</p>
+                <p class="subtitle is-size-7">Служба поддержки<br>
+                  Сообщество</p>
+              </div>
+            </div>
+          </div>
           <div class="column is-half">
-            <p class="title is-size-5">2023 PinQR - сервис доставки сообщений <br> без необходимости публикации личных
+            <p class="title is-size-6">2023 PinQR - сервис доставки сообщений <br> без необходимости публикации личных
               данных</p>
-          </div>
-          <div class="column ">
-            <p class="title is-size-5">Компания</p>
-            <p class="subtitle is-size-6">О нас<br>
-              Приватность<br>
-              Для СМИ<br>
-              Контакты
-            </p>
-          </div>
-          <div class="column">
-            <p class="title is-size-5">Соцсети</p>
-            <p class="subtitle is-size-6">Телеграмм<br>
-              Вконтакте</p>
-          </div>
-          <div class="column">
-            <p class="title is-size-5">Помощь</p>
-            <p class="subtitle is-size-6">Служба поддержки<br>
-              Сообщество</p>
           </div>
         </div>
       </div>
@@ -274,9 +280,17 @@ export default {
   },
 
   mounted() {
-
+    console.log('some')
   },
 
-  methods: {}
+  methods: {
+    scrollMeTo(refName) {
+      var element = this.$refs[refName];
+      element.scrollIntoView();
+
+      // var top = element.offsetTop;
+      // window.scrollTo(0, top);
+    }
+  }
 }
 </script>
