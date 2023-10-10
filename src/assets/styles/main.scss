@@ -11,13 +11,18 @@
 
 // Set your brand colors
 $blue: #4994EC;
+$deep-blue: #236FC7;
 
 
 // Update Bulma's global variables
 $primary: $blue;
-$family-sans-serif: "Nunito", Opt-root-ui;
-// $grey-dark: $brown;
-// $grey-light: $beige-light;
+$info: #8CBCF4;
+$dark: $deep-blue;
+$light: #D9D9D9;
+$family-sans-serif: Opt-root-ui;
+
+
+// $grey-light: $grey-light;
 
 // $link: $pink;
 $widescreen-enabled: false;
@@ -40,3 +45,7 @@ $fullhd-enabled: false;
 // @import "../../../node_modules/bulma/sass/components/navbar.sass";
 // @import "../../../node_modules/bulma/sass/layout/hero.sass";
 // @import "../../../node_modules/bulma/sass/layout/section.sass";
+
+.reverse-row-order {
+  flex-direction: row-reverse;
+}

@@ -8,7 +8,8 @@ import AssetList from "@/components/AssetList";
 import Asset from "@/components/Asset";
 import Card from "@/components/Card";
 import CardExportForm from "@/components/CardExportForm"
-import Landing from "@/components/Landing";
+import Landing from "@/components/Landing_s";
+import LandingOld from "@/components/Landing";
 import RegisterBotForm from "@/components/RegisterBotForm";
 import ResetPasswordForm from "@/components/ResetPasswordForm";
 
@@ -19,6 +20,11 @@ const routes = [
   },
   {
     path: '/landing',
+    name: 'LandingOld',
+    component: LandingOld
+  },
+  {
+    path: '/landing-new',
     name: 'Landing',
     component: Landing
   },
