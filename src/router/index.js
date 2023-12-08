@@ -15,8 +15,17 @@ import ResetPasswordForm from "@/components/ResetPasswordForm";
 
 const routes = [
   {
+    path: '',
+    redirect: '/landing'
+  },
+  {
     path: '/',
     redirect: '/landing'
+  },
+  {
+    path: '/landing-old',
+    name: 'LandingOld',
+    component: LandingOld
   },
   {
     path: '/landing',
