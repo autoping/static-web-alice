@@ -22,6 +22,7 @@ $light: #D9D9D9;
 $family-sans-serif: Opt-root-ui;
 
 
+
 // $grey-light: $grey-light;
 
 // $link: $pink;
@@ -48,4 +49,7 @@ $fullhd-enabled: false;
 
 .reverse-row-order {
   flex-direction: row-reverse;
+}
+.pageloader {
+  background: $info
 }

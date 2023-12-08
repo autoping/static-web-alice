@@ -1,5 +1,6 @@
 <template>
   <Menu />
+  <div class="pageloader" :class="{ 'is-active': loading }"><span class="title">Один момент...</span></div>
   <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
@@ -8,7 +9,7 @@
             <button class="button is-primary " :disabled="assets.length >= 5" @click="navigateToAssetForm()">
               <span class="icon">
                 <i class="fas fa-thin fa-plus"></i>
-              </span>  
+              </span>
               <span>Добавить</span>
             </button>
 
@@ -19,6 +20,7 @@
               <div class="column">{{ asset.name }}</div>
               <div class="column">
                 <button class="button" @click="navigateToAsset(asset.id)">Посмотреть</button>
+                <!-- <button class="button" @click="deleteAsset(asset.id)">Удалить</button> -->
               </div>
             </div>
           </div>
@@ -26,7 +28,6 @@
       </div>
     </div>
   </section>
-
 </template>
 
 <script>
@@ -46,7 +47,8 @@ export default {
     return {
       registrationUrl: null,
       user: {},
-      assets: []
+      assets: [],
+      loading: true
     }
   },
 
@@ -57,12 +59,15 @@ export default {
   methods: {
 
     init() {
+ 
       axios.get(apiUrl + "/assets")
         .then((res) => {
           this.assets = res.data;
+          this.loading=false;
         })
         .catch((err) => {
           alert(err);
+          this.loading = false;
         });
     },
 
@@ -71,8 +76,25 @@ export default {
     },
 
     navigateToAsset(assetId) {
-      console.log(assetId);
       this.$router.push({ name: "Asset", query: { assetId: assetId } });
+    },
+
+    deleteAsset(assetId) {
+      this.errMsg = "";
+      axios.delete(apiUrl + '/assets/' + assetId)
+        .then((res) => {
+          console.log(res)
+          this.assets = this.assets.filter(e=>{
+            return e.id != assetId;
+          })
+        })
+        .catch((err) => {
+          if (err.response.status === 400) {
+            this.errMsg = err.response.data;
+          } else {
+            alert(err);
+          }
+        });
     }
   }
 }
