@@ -1,9 +1,9 @@
 <template>
   <Menu/>
-  <section class="hero is-fullheight">
-    <div class="hero-body">
+  <section class="section is-fullheight">
+    <!-- <div class="hero-body"> -->
       <div class="container">
-        <div class="box">
+        <!-- <div class="box"> -->
           <div class="block">
             <h1 class="title is-1">{{ user.nickname }}</h1>
           </div>
@@ -11,11 +11,14 @@
             <h7 class="title is-7">Имя: {{ user.nickname }}</h7>
           </div>
           <div class="block">
+            <h7 class="title is-7"> Почта: {{ user.login }}</h7>
+          </div>
+          <div class="block">
             <h7 class="title is-7">Месенджер: Телеграм</h7>
           </div>
-        </div>
+        <!-- </div> -->
       </div>
-    </div>
+    <!-- </div> -->
   </section>
 </template>
 

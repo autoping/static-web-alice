@@ -1,30 +1,42 @@
 <template>
   <Menu />
   <div class="pageloader" :class="{ 'is-active': loading }"><span class="title">Один момент...</span></div>
-  <section class="hero is-fullheight">
-    <div class="hero-body">
-      <div class="container">
-        <div class="box">
-          <div class="block">
-            <button class="button is-primary " :disabled="assets.length >= 5" @click="navigateToAssetForm()">
-              <span class="icon">
-                <i class="fas fa-thin fa-plus"></i>
-              </span>
-              <span>Добавить</span>
-            </button>
+  <section class="section is-fullheight">
+    <div class="container">
+      <div class="block">
+        <div v-if="!assets || !assets.length">У вас пока нет ни одного предмета. </div>
+        <div class="columns is-mobile" v-for="asset in assets" v-bind:key="asset.id">
 
-          </div>
-          <div class="block">
-            <div v-if="!assets || !assets.length">У вас пока нет ни одного предмета. </div>
-            <div class="columns is-mobile" v-for="asset in assets" v-bind:key="asset.id">
-              <div class="column">{{ asset.name }}</div>
-              <div class="column">
-                <button class="button" @click="navigateToAsset(asset.id)">Посмотреть</button>
-                <!-- <button class="button" @click="deleteAsset(asset.id)">Удалить</button> -->
+          <div class="dropdown is-hoverable">
+            <div class="dropdown-trigger">
+              <div class="button is-primary is-inverted is-medium" aria-haspopup="true" :aria-controls="'dropdown-menu' + asset.id">
+                <span class="icon ">
+                  <i class="fas fa-ellipsis-vertical" aria-hidden="true"></i>
+                </span>
+              </div>
+            </div>
+            <div class="dropdown-menu" :id="'dropdown-menu'+asset.id" role="menu">
+              <div class="dropdown-content">
+                <a class="dropdown-item" @click="navigateToAsset(asset.id)">
+                  Изменить
+                </a>
+                <a class="dropdown-item" @click="deleteAsset(asset.id)">
+                  Удалить
+                </a>
               </div>
             </div>
           </div>
+          <div @click="navigateToAsset(asset.id)" class="column">{{ asset.name }}</div>
         </div>
+      </div>
+
+      <div class="block">
+        <button class="button is-primary is-right" :disabled="assets.length >= 5" @click="navigateToAssetForm()">
+          <span class="icon">
+            <i class="fas fa-thin fa-plus"></i>
+          </span>
+          <span>Добавить</span>
+        </button>
       </div>
     </div>
   </section>
@@ -59,11 +71,11 @@ export default {
   methods: {
 
     init() {
- 
+
       axios.get(apiUrl + "/assets")
         .then((res) => {
           this.assets = res.data;
-          this.loading=false;
+          this.loading = false;
         })
         .catch((err) => {
           alert(err);
@@ -84,7 +96,7 @@ export default {
       axios.delete(apiUrl + '/assets/' + assetId)
         .then((res) => {
           console.log(res)
-          this.assets = this.assets.filter(e=>{
+          this.assets = this.assets.filter(e => {
             return e.id != assetId;
           })
         })

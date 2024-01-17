@@ -16,11 +16,10 @@
           </div>
           <div id="navbarMenuHeroA" class="navbar-menu" v-bind:class="{ 'is-active': showMobileMenu }">
             <div class="navbar-end">
-              <a class="navbar-item has-text-black" v-show="$route.name !== 'Asset List'">
+              <a class="navbar-item has-text-black" v-bind:class="{ 'is-active': $route.name.toLowerCase().includes('asset')}">
                 <router-link :to="{ path: `/asset-list` }" class="navbar-item"> Предметы</router-link>
-
               </a>
-              <a class="navbar-item has-text-black" v-show="$route.name !== 'About'">
+              <a class="navbar-item has-text-black" v-bind:class="{ 'is-active': $route.name === 'About' }">
                 <router-link :to="{ path: `/user-info` }" class="navbar-item"> Пользователь</router-link>
               </a>
               <span class="navbar-item">

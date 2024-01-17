@@ -1,34 +1,52 @@
 <template>
   <Menu />
   <div class="pageloader" :class="{ 'is-active': loading }"><span class="title">Один момент...</span></div>
-  <section class="hero is-fullheight">
-    <div class="hero-body">
+  <section class="section is-fullheight">
       <div class="container">
-        <div class="box">
           <div v-if="errMsg" class="notification is-danger is-light">
             {{ errMsg }}
           </div>
-          <div class="block">
+          <div class="block"> 
             <h5 class="title is-5">Предмет: {{ asset?.name }}</h5>
-            <button class="button is-primary" @click="navigateToCardForm()" :disabled="cards.length >= 5">
+          </div>
+          <div class="block">
+            <div v-if="!cards || !cards.length">У вас пока не назначены QR Коды для предмета. </div>
+
+            <div class="columns is-mobile" v-for="card in cards" v-bind:key="card.id">
+
+              <div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                  <div class="button is-primary is-inverted is-medium" aria-haspopup="true" :aria-controls="'dropdown-menu' + card.id">
+                    <span class="icon ">
+                      <i class="fas fa-ellipsis-vertical" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="dropdown-menu" :id="'dropdown-menu'+card.id" role="menu">
+                  <div class="dropdown-content">
+                    <a class="dropdown-item" @click="navigateToCard(card.id)">
+                      Изменить
+                    </a>
+                    <a class="dropdown-item" @click="deleteCard(card.id)">
+                      Удалить
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div @click="navigateToCard(card.id)" class="column">{{ card.description }}</div>
+            </div>
+          </div>
+
+          <div class="block">
+            <button class="button is-primary is-right" @click="navigateToCardForm()" :disabled="cards.length >= 5">
               <span class="icon">
                 <i class="fas fa-thin fa-plus"></i>
               </span>
-              <span>Добавить qr</span>
+              <span>Добавить QR</span>
             </button>
           </div>
-          <div class="block">
-            <div class="columns  is-mobile" v-for="card in cards" v-bind:key="card.id">
-              <div class="column">{{ card.description }}</div>
-              <div class="column">
-                <button class="button" @click="navigateToCard(card.id)">Посмотреть</button>
-                <!-- <button class="button" @click="deleteCard(card.id)">Удалить</button> -->
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
+    <!-- </div> -->
 
   </section>
 </template>

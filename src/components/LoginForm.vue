@@ -1,4 +1,5 @@
 <template>
+  <!-- <div class="pageloader" :class="{ 'is-active': loading }"><span class="title">Один момент...</span></div> -->
   <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
@@ -46,6 +47,7 @@ export default {
   data() {
     return {
       errMsg: "",
+      // loading: false,
       form: {
         login: "",
         password: ""
@@ -56,12 +58,14 @@ export default {
   methods: {
     signin() {
       this.errMsg="";
+      // loading=true;
       axios.post(apiUrl + '/login', this.form)
           .then((res) => {
             localStorage.setItem('accessToken', res.data.accessToken);
             return axios.get(apiUrl+'/users/me');
           })
           .then((res) =>{
+            // loading = false;
             localStorage.setItem('user', JSON.stringify(res.data));
             if(res.data.chatId) {
               this.$router.push({name: "Asset List"});

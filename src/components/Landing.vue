@@ -59,7 +59,7 @@
   </section>
 
   <section class="hero is-medium">
-    <div class="hero-body">
+    <div class="hero-body" ref="advantages">
       <div class="container">
         <div class="columns  reverse-row-order">
           <div class="column">
@@ -82,7 +82,7 @@
   </section>
 
   <section class="hero is-medium is-light">
-    <div class="hero-body" ref="advantages">
+    <div class="hero-body">
       <div class="container">
         <div class="columns">
           <div class="column">
@@ -286,10 +286,7 @@ export default {
   methods: {
     scrollMeTo(refName) {
       var element = this.$refs[refName];
-      element.scrollIntoView();
-
-      // var top = element.offsetTop;
-      // window.scrollTo(0, top);
+      element.scrollIntoView({behavior: "smooth"});
     }
   }
 }

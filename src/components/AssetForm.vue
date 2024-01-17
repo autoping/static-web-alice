@@ -1,9 +1,9 @@
 <template>
   <Menu />
-  <section class="hero is-fullheight">
-    <div class="hero-body">
+  <section class="section is-fullheight">
+    <!-- <div class="hero-body"> -->
       <div class="container">
-        <div class="box">
+        <!-- <div class="box"> -->
           <h5 class="title is-5">Новый Предмет</h5>
           <form v-on:submit.prevent="create">
             <div class="field">
@@ -20,8 +20,8 @@
 
           </form>
         </div>
-      </div>
-    </div>
+      <!-- </div> -->
+    <!-- </div> -->
   </section>
 
 </template>

@@ -1,9 +1,9 @@
 <template>
   <Menu />
-  <section class="hero is-fullheight">
-    <div class="hero-body">
+  <section class="section is-fullheight">
+    <!-- <div class="hero-body"> -->
       <div class="container">
-        <div class="box">
+        <!-- <div class="box"> -->
           <div v-if="errMsg" class="notification is-danger is-light">
             {{ errMsg }}
           </div>
@@ -34,6 +34,8 @@
             </div> -->
           </div>
 
+          <div class="block">
+
           <div class="card ">
             <div class="card-content">
               <div v-if="!horizontalMode" class="content">
@@ -60,6 +62,7 @@
               </div>
             </div>
           </div>
+        </div>
 
           <div class="block">
             <button class="button is-primary" @click="saveToFile()">
@@ -69,9 +72,9 @@
               Назад
             </button>
           </div>
-        </div>
+        <!-- </div> -->
       </div>
-    </div>
+    <!-- </div> -->
   </section>
 </template>
 

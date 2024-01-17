@@ -1,9 +1,9 @@
 <template>
-  <section class="hero is-fullheight">
-    <div class="hero-body">
+  <section class=" section is-fullheight">
+    <!-- <div class="hero-body"> -->
       <div class="container">
         <div class="column is-4 is-offset-4">
-          <form v-on:submit.prevent="reset" class="box">
+          <form v-on:submit.prevent="reset" >
             <h5 class="title is-5">Сбрасывание пароля:</h5>
             <div class="field">
               <label class="label">Пароль *</label>
@@ -27,7 +27,7 @@
         </div>
       </div>
 
-    </div>
+    <!-- </div> -->
   </section>
 
 </template>

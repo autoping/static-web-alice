@@ -1,9 +1,7 @@
 <template>
   <Menu/>
-  <section class="hero is-fullheight">
-    <div class="hero-body">
+  <section class="section is-fullheight">
       <div class="container">
-        <div class="box">
           <div v-if="errMsg" class="notification is-danger is-light">
             {{ errMsg }}
           </div>
@@ -35,9 +33,7 @@
           <button type="button" @click="navigateBackToAsset()" class="button">
             Назад
           </button>
-        </div>
       </div>
-    </div>
   </section>
 </template>
 
